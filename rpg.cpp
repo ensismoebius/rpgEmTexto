@@ -8,7 +8,8 @@
  * escolhas da/do jogadora/or pode mudar o final
  */
 
-// TODO Fazer uma forma do jogador ou jogadora escolher sua raça //
+// TODO Fazer uma forma do jogador ou jogadora escolher sua raça
+// TODO Sendo que cada raça tem a possibilidade de  ter mais ou menos atributos que as outras
 
 struct Personagem{
     std::string nome;
