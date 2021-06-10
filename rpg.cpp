@@ -8,7 +8,6 @@
  * escolhas da/do jogadora/or pode mudar o final
  */
 
-// TODO Sendo que cada raça tem a possibilidade de  ter mais ou menos atributos que as outras
 
 struct Personagem{
     std::string nome;
