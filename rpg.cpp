@@ -64,21 +64,21 @@ void mostraStatusDoJogador(struct Personagem &p){
                 p.forcaMagica << " orbites $" << p.creditos << std::endl;
 }
 
-void faseDaCidade(struct Personagem &p){
+void faseDaCaverna(struct Personagem &p){
     
     unsigned int opcao = 0;
 
     while(opcao < 1 || opcao > 2){
-        std::cout << "VocÃª estÃ¡ na rua principal da cidade, nesta rua vocÃª vÃª dois estabelecimentos: Uma quitanda de um lado uma loja de armas do outro.\n Para onde vocÃª deseja ir?" << std::endl;
-        std::cout << "1-Quitanda\n2-Loja de armas" << std::endl;
+        std::cout << "Você chegou na floresta e possui duas cavernas. Tem que decidir em qual entrar." << std::endl;
+        std::cout << "1-Caverna Verde\n2-Caverna Azul" << std::endl;
 
         std::cin >> opcao;
     }
 
     if(opcao == 1){
-        std::cout << "O vendedor te olha e pergunta: O que deseja meu caro?" << std::endl;
+        std::cout << "Quando você entra possui dois baús e precisa escolher apenas uma." << std::endl;
         
-        std::cout << "1-Nada\n2-Comida\n3-Que vÃ¡ para a p*" << std::endl;
+        std::cout << "1-Detona\n2-Fraco\n3-Nenhum Baú" << std::endl;
         std::cin >> opcao;
 
         if(opcao == 2){
@@ -86,17 +86,17 @@ void faseDaCidade(struct Personagem &p){
             opcao = 0;
 
             while(opcao < 1 || opcao > 2){
-                std::cout << "1-MacarrÃ£o (DÃ¡ muita energia)\n2-Balinha (DÃ¡ pouca energia)" << std::endl;
+                std::cout << "1-Machado você possuirá maior resistencia\n2-Lança você terá um ataque potenteroso." << std::endl;
                 std::cin >> opcao;
             }
 
             switch(opcao){
                 case 1:
-                    if(p.creditos >= 50){
-                        p.energia += 50;
-                        p.creditos -= 50;
+                    if(p.creditos >= 10){
+                        p.energia += 30;
+                        p.creditos -= 10;
                     }else{
-                        std::cout << "Desculpe mas nÃ£o posso te vender isso..." << std::endl;
+                        std::cout << "Desculpe mas necessita de mais créditos." << std::endl;
                     }
                     break;
                 case 2:
@@ -104,54 +104,63 @@ void faseDaCidade(struct Personagem &p){
                         p.energia += 10;
                         p.creditos -= 10;
                     }else{
-                        std::cout << "Desculpe mas nÃ£o posso te vender isso..." << std::endl;
+                        std::cout << "Desculpe mas necessita de mais créditos." << std::endl;
                     }
                     break;
             }
             return;
 
         }else if(opcao == 3){
-            std::cout << "Prepare-se para morrer indolente!!!" << std::endl;
+            std::cout << "Toma vergonha e escolha algo." << std::endl;
             p.energia = p.energia - p.energia;
             return;
         }else{
-            std::cout << "Que cara estranho....";
+            std::cout << "Volte quando souber o que deseja.";
         }
 
     }
 
     if(opcao == 2){
-        std::cout << "O vendedor te olha e pergunta: Pronto pra batalha?" << std::endl;
+        std::cout << "Quando você entra possui dois baús e precisa escolher apenas uma." << std::endl;
         
-        std::cout << "1-NÃ£o\n2-Espada\n3-Adaga" << std::endl;
+        std::cout << "1-Fino Trato\n2-Gostosura\n3-Nenhum Baú" << std::endl;
         std::cin >> opcao;
 
         if(opcao == 2){
 
-            std::cout << "Bela escolha!" << std::endl;
+            opcao = 0;
 
-            if(p.creditos >= 200){
-                std::cout << "Muitos cairÃ£o por essa lÃ¢mina!!" << std::endl;
-                p.creditos = p.creditos - 200;
-
-                mostraStatusDoJogador(p);
-            }else{
-                std::cout << "VocÃª nÃ£o merece este tesouro plebeu!!" << std::endl;
+            while(opcao < 1 || opcao > 2){
+                std::cout << "1-Faca você possuirá maior resistencia\n2-Porrete você terá um ataque potenteroso." << std::endl;
+                std::cin >> opcao;
             }
+
+            switch(opcao){
+                case 1:
+                    if(p.creditos >= 10){
+                        p.energia += 30;
+                        p.creditos -= 10;
+                    }else{
+                        std::cout << "Desculpe mas necessita de mais créditos." << std::endl;
+                    }
+                    break;
+                case 2:
+                    if(p.creditos >= 10){
+                        p.energia += 10;
+                        p.creditos -= 10;
+                    }else{
+                        std::cout << "Desculpe mas necessita de mais créditos." << std::endl;
+                    }
+                    break;
+            }
+            return;
 
         }else if(opcao == 3){
-            std::cout << "Pelo menos dÃ¡ para apontar um lÃ¡pis" << std::endl;
-
-            if(p.creditos >= 25){
-                std::cout << "ok..." << std::endl;
-                p.creditos = p.creditos - 25;
-
-                mostraStatusDoJogador(p);
-            }else{
-                std::cout << "Saia daqui farrapo!!!" << std::endl;
-            }
+            std::cout << "Toma vergonha e escolha algo." << std::endl;
+            p.energia = p.energia - p.energia;
+            return;
         }else{
-            std::cout << "VÃ¡ embora!." << std::endl;
+            std::cout << "Volte quando souber o que deseja.";
         }
     }
 }
