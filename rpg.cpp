@@ -158,20 +158,72 @@ void faseDaCidade(struct Personagem &p){
     }
 }
 
+void faseBatalha(struct Personagem &p){
+	unsigned int r, d;
+	
+	
+ std::cout<<"\nApós uma exaustiva caminhada sobre o sol"<<std::endl;
+ std::cout<<"Voce decide descansar aos pes de uma grande arvore.No meio da noite, um barulho vindo da direção do mato te faz acordar"<<std::endl;
+std::cout<<"Com o coração acelerado voce avista uma pessoa, na qual esta ameaçando\n"<<std::endl;
+std::cout<<"O que voce faz?\n1-Batalha\n2-Corre\n3-Conversa\n";
+std::cin>>r;
+
+if (r==1){
+std::cout<<"Furioso com a situação, voce aceita a batalha!!\n"<<std::endl;
+std::cout<<"Escolha seu movimento\n1-Soco na cara\n2-Chute na barriga\n3-Mordida na orelha"<<std::endl;
+std::cin>>d;
+
+switch (d){
+	
+case 1: std::cout<<"Seu soco faz cocegas no seu oponente"<<std::endl;
+	p.energia=-10;
+	
+	break;
+	
+case 2: std::cout<<"\nBela tentativa, mas seu chute foi bloqueado"<<std::endl;
+p.energia=-10;
+
+break;
+
+case 3: std::cout<<"Um golpe sujo, mas eficaz"<<std::endl;
+std::cout<<"Machucado, seu oponente foge da batalha!"<<std::endl;
+break;
+	
+}	
+	
+}	
+
+
+if (r==2){
+
+std::cout<<"Voce escapa daquela situação perigosa.Mas provaste que nao tem coragem suficiente para encarar esse mundo!!!"<<std::endl;
+p.energia = p.energia-p.energia;
+	
+return;
+}
+
+if (r==3){
+std::cout<<"Para ele dialogo não é uma opção!\n";	
+	
+}	
+}
+
 int main(int argc, char** argv)
 {
     // s = seed rand = aleatÃ³rio                                                
     // std::time vem da biblioteca ctime  
-    std::srand(std::time(nullptr)); //<-- Retorno o Unix time stamp
+    //std::srand(std::time(nullptr)); //<-- Retorno o Unix time stamp
 
     struct Personagem j = boasVindasDoJogo();
 
-    std::cout << "VocÃª recebeu um presente das divindades da terra!\n";
-    std::cout << "Lembre-se que nem sempre grandes poderes significam grande honra!\n";
+    //std::cout << "VocÃª recebeu um presente das divindades da terra!\n";
+   // std::cout << "Lembre-se que nem sempre grandes poderes significam grande honra!\n";
 
-    mostraStatusDoJogador(j);
+   // mostraStatusDoJogador(j);
 
-    faseDaCidade(j);
+    //faseDaCidade(j);
 
-    mostraStatusDoJogador(j);
+   // mostraStatusDoJogador(j);
+   
+   faseBatalha(j);
 }
