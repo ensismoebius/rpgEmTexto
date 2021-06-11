@@ -156,7 +156,128 @@ void faseDaCidade(struct Personagem &p){
         }
     }
 }
+void faseDaFloresta(struct Personagem &p){
+    
+    unsigned int opcao = -1;
 
+    while(opcao < 1 || opcao > 2 ){
+        std::cout << "Heroi... O rei demonio esta esperando por voce na cidade caida Lore! " << std::endl;
+        std::cout << "Antes de poder confronta-lo, voce precisara¡ passar pela floresta obscura e derrotar as criaturas malignas que nela habitam.\n\n";
+
+        std::cout << "Voce esta na entrada da floresta, nessa entrada há dois estabelecimentos:\n\n1-Centro de treinamento\n2-Magic Shoppe\n3-Nada" << std::endl;
+        std::cin >> opcao;
+        
+    }
+
+    if(opcao == 1){
+        std::cout << "Salve bravo aventureiro! Eu sou mazumi um mago guerreiro." << std::endl;
+        std::cout << "Quer aprender as habilidades que posso te ensinar?" << std::endl;
+        std::cout << "Muito bem." << std::endl;
+        std::cout << "Se voce VIVER durante minhas aulas, voce pode apenas me agradecer!\n" << std::endl;
+    
+        std::cout << "1-Mago\n2-Guerreiro\n3-Nada\n\n" << std::endl;
+        std::cin >> opcao;
+    
+        if(opcao == 1){
+        
+            if(p.creditos >= 1){
+                std::cout << "ParabÃ©ns, você adquiriu a Classe Mago, com ela se pode pegar as energias misticas do mundo ao seu redor e enviar fogo e gelo pelo campo de batalha!\n\n" << std::endl;
+                p.creditos = p.creditos - 2;
+
+                mostraStatusDoJogador(p);
+                
+            }else{
+                std::cout << "VocÃª nÃ£o possui crÃ©ditos o suficiente." << std::endl;
+            }
+
+        }else if(opcao == 2){
+            
+           if(p.creditos >= 1){
+                std::cout << "ParabÃ©ns, você adquiriu a Classe Guerreiro, com  ela se pode ter um grande engajamento em combates corpo a corpo!\n\n" << std::endl;
+                p.creditos = p.creditos - 2;
+
+                mostraStatusDoJogador(p);
+                
+            }else{
+                std::cout << "VocÃª nÃ£o possui crÃ©ditos o suficiente." << std::endl;
+            }
+
+        }else{
+            std::cout << "Que cara estranho....";
+        }
+
+    }
+    //Division
+    if(opcao == 2){
+        std::cout << "Eu sou o Warlic, bem-vindo a minha loja de magia! Sinta-se a vontade para examinar minha colecao requintada de itens magicos e pocoes." << std::endl;
+        
+        std::cout << "1-Nada\n2-Pocões\n3-Armamento" << std::endl;
+        std::cin >> opcao;
+
+        if(opcao == 2){
+
+            opcao = 0;
+ 
+            while(opcao < 1 || opcao > 2){
+                std::cout << "1-Poção física (Aumenta forca)\n2-Poção magia (Aumenta a forca magica)" << std::endl;
+                std::cin >> opcao;
+            }
+ 
+            switch(opcao){
+                case 1:
+                    if(p.creditos >= 2){
+                        p.forcaFisica += 10;   
+                        p.creditos -= 2;
+                    }else{
+                        std::cout << "Desculpe mas nÃ£o posso te vender isso..." << std::endl;
+                    }
+                    break;
+                case 2:
+                    if(p.creditos >= 1){
+                        p.forcaMagica += 10;
+                        p.creditos -= 1;
+                    }else{
+                        std::cout << "Desculpe mas nÃ£o posso te vender isso..." << std::endl;
+                    }
+                    break;
+            }
+            return;
+
+        }else if(opcao == 3){
+            opcao = 0;
+ 
+            while(opcao < 1 || opcao > 2){
+                std::cout << "1-Holy avenger - Espada mágica forjada com sangue de deuses, qualquer coisa que estre na frente de seu fio é destruido instantaneamente, sem direito a testes de resistência.\n" << std::endl;
+                std::cout << "2-super nova bow - Arco que tem a energia de uma estrela concentrada em sí, suas flechas evapora o que toca.\n";
+                std::cin >> opcao;
+            }
+ 
+            switch(opcao){
+                case 1:
+                std::cout << "Otima escolha guerreiro!\n\n";
+                    if(p.creditos >= 2){
+                        p.forcaFisica += 200;   
+                        p.creditos -= 2;
+                    }else{
+                        std::cout << "Desculpe mas nÃ£o posso te vender isso..." << std::endl;
+                    }
+                    break;
+                case 2:
+                std::cout << "Otima escolha guerreiro!\n\n";
+                    if(p.creditos >= 1){
+                        p.forcaMagica += 200;
+                        p.creditos -= 1;
+                    }else{
+                        std::cout << "Desculpe mas nÃ£o posso te vender isso..." << std::endl;
+                    }
+                    break;
+            }
+            return;
+        }
+    }
+
+
+}
 int main(int argc, char** argv)
 {
     // s = seed rand = aleatÃ³rio                                                
@@ -173,4 +294,6 @@ int main(int argc, char** argv)
     faseDaCidade(j);
 
     mostraStatusDoJogador(j);
+    
+    faseDaFloresta(j);
 }
