@@ -47,7 +47,7 @@ struct Personagem boasVindasDoJogo(){
     eu.altura = geraAleatorio() * 300;
     eu.forcaFisica = geraAleatorio() * 100;
     eu.forcaMagica = geraAleatorio() * 50;
-    eu.creditos = 26;
+    eu.creditos = 2600;
 
     return eu;
 }
