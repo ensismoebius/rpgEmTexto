@@ -157,6 +157,57 @@ void faseDaCidade(struct Personagem &p){
     }
 }
 
+void faseGothamCity(struct Personagem &p){
+
+    unsigned int opcao = 0;
+
+    while(opcao < 1 || opcao > 2){
+        std::cout << "Você chegou em Gotham City, vamos ver se conseguimos arranjar dinheiro para conseguirmos nos preparar melhor. Quem sabe não acabamos encontrando o Batman por aqui!" << std::endl;
+
+        std::cout << "Olhe só, estão contratando temporariamente, pode ser uma boa para conseguirmos uma graninha a mais, o que acha?" << std::endl;
+
+        std::cout << "1 - Claro\n2 - Nah, deixa queto" << std::endl;
+
+        std::cin >> opcao;
+    }
+
+    if(opcao == 1){
+        std::cout << "Contratante: Olá cidadão de gotham city, você está atras de uma renda extra certo? Bem, venha comigo, estou precisando de um ajudante, é bem rapidinho." << std::endl;
+        std::cout << "1 - Vamos la\n2 - To afim não, deu preguiça" << std::endl;
+
+        std::cin >> opcao;
+
+        unsigned int ganho = 0;
+
+        switch (opcao)
+        {
+        case 1:
+
+            std::cout << "Algum tempo depois..." << std::endl;
+            std::cout << "Ufa! Acabamos, obrigado pela ajuda, não sei como eu faria isto sozinho, aqui está seu pagamento" << std::endl;
+
+            ganho = geraAleatorio() * 100;
+
+            p.creditos = p.creditos + ganho;
+
+            p.energia = p.energia - 5;
+
+            std::cout << "+ $"<< ganho << std::endl;
+
+            std::cout << "Conseguimos uma graninha a mais agora, podemos juntas para comprarmos comidas e armas, vamos descançar um pouco para recupermos energia após um longo dia de trabalho. E eu juro que vi o Batman em cima de algum predio..." << std::endl;
+        break;
+        
+        case 2:
+            std::cout << "Ah que pena, eu precisava mesmo de ajuda, boa sorte com sua jornada..." << std::endl;
+        break;
+        }
+    }
+
+    if(opcao == 2){
+        std::cout << "Ok né, qualquer coisa pedimos emprestado para alguem." << std::endl;
+    }
+}
+
 int main(int argc, char** argv)
 {
     // s = seed rand = aleatório                                                
@@ -171,6 +222,10 @@ int main(int argc, char** argv)
     mostraStatusDoJogador(j);
 
     faseDaCidade(j);
+
+    mostraStatusDoJogador(j);
+
+    faseGothamCity(j);
 
     mostraStatusDoJogador(j);
 }
