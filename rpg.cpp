@@ -3,18 +3,11 @@
 #include <iostream>
 #include <stdlib.h>
 
-/**
- * Um sistema de RPG em modo text que, dependendo das 
- * escolhas da/do jogadora/or pode mudar o final
- */
-
-// TODO Fazer uma forma do jogador ou jogadora escolher sua raça
-// TODO Sendo que cada raça tem a possibilidade de  ter mais ou menos atributos que as outras
 
 struct Personagem{
     std::string nome;
 
-    unsigned int energia;
+    unsigned int mana;
     unsigned int altura;
     unsigned int forcaFisica;
     unsigned int forcaMagica;
@@ -26,44 +19,44 @@ float geraAleatorio(){
 }
 
 struct Personagem boasVindasDoJogo(){
-    std::cout << "Boas vindas ao nosso mundo!\n";
-    std::cout << "Um sentimento de obscuridade tomou conta de nossa terra, \n";
-    std::cout << "o rei Demônio dominou as principais forças de defesa do nosso povo\n";
-    std::cout << "e a cada dia que passa as esperanças decaem mais e mais...\n";
+    std::cout << "Bem vindo ao Hyako Secret Room!\n";
+    std::cout << "Voce esta em um mundo onde a ficção é a realidade, \n";
+    std::cout << "Com isso o mundo esta sobre ameaça de um ser poderoso chamado Leno Brega\n";
+    std::cout << "ele busca migrar o reino de hyako para sua coleção de planetas no sistema solar de bueno...\n";
 
-    std::cout << "Como somos um bando de incompetentes e não conseguimos nos defender\n";
-    std::cout << "precisamos de alguém que nos lidere para a derrocada deste maldito!\n";
-    std::cout << "Você é nossa escolha!! E... a propósito... qual é mesmo o seu nome?\n";
+    std::cout << "nós de hyako secret room somos seres poderosos,porem ainda não podemos contra Leno brega\n";
+    std::cout << "Por isso te convocamos aqui neste mundo,sabemos que voce podera nos ajudar...\n";
+    std::cout << "Voce é a nossa unica salvação,nos diga quem é voce.\n";
 
     std::string nome;
     std::cin.ignore();
     std::getline(std::cin, nome);
 
-    std::cout << "De agora em diante lhe chamaremos de Sir " << nome << "!\n";
+    std::cout << "De agora em diante lhe chamaremos de Sr."<< nome <<"!\n";
 
     struct Personagem eu;
 
     eu.nome = nome;
-    eu.energia = (geraAleatorio() * 90) + 10;
-    eu.altura = geraAleatorio() * 300;
-    eu.forcaFisica = geraAleatorio() * 100;
-    eu.forcaMagica = geraAleatorio() * 50;
-    eu.creditos = 26;
+    eu.mana = (geraAleatorio() * 50) + 20;
+    eu.altura = geraAleatorio() * 200;
+    eu.forcaFisica = geraAleatorio() * 200;
+    eu.forcaMagica = geraAleatorio() * 100;
+    eu.creditos = 30;
 
     return eu;
 }
 
 void mostraStatusDoJogador(struct Personagem &p){
 
-    if(p.energia == 0){
-        std::cout << "Você morreu!!!" << std::endl;
+    if(p.mana == 0){
+        std::cout << "!!!Você esta morto porque o vendedor não foi com sua cara!!!" << std::endl;
         return;
     }
 
     std::cout << "Você agora tem " << p.altura/100.0 <<
-                " metros de altura, " << p.energia << " de energia com uma força de intensidade " <<
+                " metros de altura, " << p.mana << " de mana com uma força de intensidade " <<
                 p.forcaFisica << " e um poder mágico de " <<
-                p.forcaMagica << " orbites $" << p.creditos << std::endl;
+                p.forcaMagica << " Figuras $" << p.creditos << std::endl;
 }
 
 void faseDaCidade(struct Personagem &p){
@@ -71,8 +64,8 @@ void faseDaCidade(struct Personagem &p){
     unsigned int opcao = 0;
 
     while(opcao < 1 || opcao > 2){
-        std::cout << "Você está na rua principal da cidade, nesta rua você vê dois estabelecimentos: Uma quitanda de um lado uma loja de armas do outro.\n Para onde você deseja ir?" << std::endl;
-        std::cout << "1-Quitanda\n2-Loja de armas" << std::endl;
+        std::cout << "voce está no quarto principal do reino, neste quarto voce ve duas portas: Uma porta te levara até a tenda e a outra porta te levara até uma loja de equipamentos.\n Que porta voce escolhera?" << std::endl;
+        std::cout << "1-Tenda\n2-Loja de equipamentos" << std::endl;
 
         std::cin >> opcao;
     }
@@ -80,7 +73,7 @@ void faseDaCidade(struct Personagem &p){
     if(opcao == 1){
         std::cout << "O vendedor te olha e pergunta: O que deseja meu caro?" << std::endl;
         
-        std::cout << "1-Nada\n2-Comida\n3-Que vá para a p*" << std::endl;
+        std::cout << "1-Nada\n2-Comida\n3-esferas do dragão" << std::endl;
         std::cin >> opcao;
 
         if(opcao == 2){
@@ -88,14 +81,14 @@ void faseDaCidade(struct Personagem &p){
             opcao = 0;
 
             while(opcao < 1 || opcao > 2){
-                std::cout << "1-Macarrão (Dá muita energia)\n2-Balinha (Dá pouca energia)" << std::endl;
+                std::cout << "1-Bife Acebolado (Dá muita mana)\n2-Banana Frita (Dá pouca mana)" << std::endl;
                 std::cin >> opcao;
             }
 
             switch(opcao){
                 case 1:
                     if(p.creditos >= 50){
-                        p.energia += 50;
+                        p.mana += 50;
                         p.creditos -= 50;
                     }else{
                         std::cout << "Desculpe mas não posso te vender isso..." << std::endl;
@@ -103,7 +96,7 @@ void faseDaCidade(struct Personagem &p){
                     break;
                 case 2:
                     if(p.creditos >= 10){
-                        p.energia += 10;
+                        p.mana += 10;
                         p.creditos -= 10;
                     }else{
                         std::cout << "Desculpe mas não posso te vender isso..." << std::endl;
@@ -113,61 +106,60 @@ void faseDaCidade(struct Personagem &p){
             return;
 
         }else if(opcao == 3){
-            std::cout << "Prepare-se para morrer indolente!!!" << std::endl;
-            p.energia = p.energia - p.energia;
+            std::cout << "Esqueci,elas não estão a venda!!!" << std::endl;
+            p.mana = p.mana - p.mana;
             return;
         }else{
-            std::cout << "Que cara estranho....";
+            std::cout << "mas que sujeito estranho....";
         }
 
     }
 
     if(opcao == 2){
-        std::cout << "O vendedor te olha e pergunta: Pronto pra batalha?" << std::endl;
+        std::cout << "O vendedor te pergunta: Pronto pra Descer o sarrafo em geral?" << std::endl;
         
-        std::cout << "1-Não\n2-Espada\n3-Adaga" << std::endl;
+        std::cout << "1-Não rapai\n2-kamado nichirin\n3-Death Note" << std::endl;
         std::cin >> opcao;
 
         if(opcao == 2){
 
-            std::cout << "Bela escolha!" << std::endl;
+            std::cout << "Você tem bons olhos,porem não tem figuras suficientes inbecil" << std::endl;
 
             if(p.creditos >= 200){
-                std::cout << "Muitos cairão por essa lâmina!!" << std::endl;
+                std::cout << "Muitos Onis cairão por essa Katana!!" << std::endl;
                 p.creditos = p.creditos - 200;
 
                 mostraStatusDoJogador(p);
             }else{
-                std::cout << "Você não merece este tesouro plebeu!!" << std::endl;
+                std::cout << "Você não merece esta Katana,domine sua respiração primeiro!!" << std::endl;
             }
 
         }else if(opcao == 3){
-            std::cout << "Pelo menos dá para apontar um lápis" << std::endl;
+            std::cout << "Quem diria,agora vou mostrar o novo mundo para Leno Brega!" << std::endl;
 
             if(p.creditos >= 25){
-                std::cout << "ok..." << std::endl;
+                std::cout << "Muito bem..." << std::endl;
                 p.creditos = p.creditos - 25;
 
                 mostraStatusDoJogador(p);
             }else{
-                std::cout << "Saia daqui farrapo!!!" << std::endl;
+                std::cout << "Vaza daqui Fracote!!!" << std::endl;
             }
         }else{
-            std::cout << "Vá embora!." << std::endl;
+            std::cout << "MORRA!." << std::endl;
         }
     }
 }
 
 int main(int argc, char** argv)
 {
-    // s = seed rand = aleatório                                                
-    // std::time vem da biblioteca ctime  
-    std::srand(std::time(nullptr)); //<-- Retorno o Unix time stamp
+    
+    std::srand(std::time(nullptr)); 
 
     struct Personagem j = boasVindasDoJogo();
 
-    std::cout << "Você recebeu um presente das divindades da terra!\n";
-    std::cout << "Lembre-se que nem sempre grandes poderes significam grande honra!\n";
+    std::cout << "Você recebeu um presente da divindade Arcon!\n";
+    std::cout << "Guarde em sua mente que com grandes poderes vem grandes responsabilidades!\n";
 
     mostraStatusDoJogador(j);
 
