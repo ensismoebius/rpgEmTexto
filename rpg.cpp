@@ -5,7 +5,7 @@
 
 /**
  * Um sistema de RPG em modo text que, dependendo das 
- * escolhas da/do jogadora/or pode mudar o final
+ * escolhas da/do jogadora/or pode mudar o final.
  */
 
 // TODO Fazer uma forma do jogador ou jogadora escolher sua raça
