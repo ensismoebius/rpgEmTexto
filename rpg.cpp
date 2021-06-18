@@ -66,21 +66,21 @@ void mostraStatusDoJogador(struct Personagem &p){
                 p.forcaMagica << " orbites $" << p.creditos << std::endl;
 }
 
-void faseDaCidade(struct Personagem &p){
+void faseDaFloresta(struct Personagem &p){
     
     unsigned int opcao = 0;
 
     while(opcao < 1 || opcao > 2){
-        std::cout << "Você está na rua principal da cidade, nesta rua você vê dois estabelecimentos: Uma quitanda de um lado uma loja de armas do outro.\n Para onde você deseja ir?" << std::endl;
-        std::cout << "1-Quitanda\n2-Loja de armas" << std::endl;
+        std::cout << "Você está na floresta, a sua frente tem dois caminhos com neblina, no da direita parece que é possível ver uma cabana, no esquerdo, considerando que há mais neblina, é possível que tenha alguma fonte de água.\nPara onde você deseja ir?" << std::endl;
+        std::cout << "1-Direita\n2-Esquerda\n3-Retornar a fase da cidade" << std::endl;
 
         std::cin >> opcao;
     }
 
     if(opcao == 1){
-        std::cout << "O vendedor te olha e pergunta: O que deseja meu caro?" << std::endl;
+        std::cout << "É mesmo uma cabana abandonada, olhe...há uma fada em um pote, ajudê-a, quem sabe ela possa te recompensar.\nFada diz: Obrigada por me libertar guerreiro, o que posso fazer por você como forma de agradecimento?" << std::endl;
         
-        std::cout << "1-Nada\n2-Comida\n3-Que vá para a p*" << std::endl;
+        std::cout << "1-Nada, fico feliz por tê-la ajudado\n2-Preciso de uma arma mais forte\n3-Dê-me mais energia" << std::endl;
         std::cin >> opcao;
 
         if(opcao == 2){
@@ -88,90 +88,67 @@ void faseDaCidade(struct Personagem &p){
             opcao = 0;
 
             while(opcao < 1 || opcao > 2){
-                std::cout << "1-Macarrão (Dá muita energia)\n2-Balinha (Dá pouca energia)" << std::endl;
+                std::cout << "1-Uma espada flamejante \n2-um escudo congelante" << std::endl;
                 std::cin >> opcao;
             }
 
-            switch(opcao){
+            switch(opcao)
+            {
                 case 1:
-                    if(p.creditos >= 50){
-                        p.energia += 50;
-                        p.creditos -= 50;
-                    }else{
-                        std::cout << "Desculpe mas não posso te vender isso..." << std::endl;
-                    }
-                    break;
+                        std::cout << "Fada diz: Ótima escolha, isso lhe ajudará a acabar com aqueles que cruzarem seu caminho." << std::endl;
+            
+                break;
+                
+            
                 case 2:
-                    if(p.creditos >= 10){
-                        p.energia += 10;
-                        p.creditos -= 10;
-                    }else{
-                        std::cout << "Desculpe mas não posso te vender isso..." << std::endl;
-                    }
-                    break;
+                        std::cout << "Fada diz: Muito bem, aqui está o escudo que te protegerá contra seus combatentes." << std::endl;
+            
+                  break; 
             }
             return;
 
         }else if(opcao == 3){
-            std::cout << "Prepare-se para morrer indolente!!!" << std::endl;
-            p.energia = p.energia - p.energia;
+            std::cout << "Fada diz: Posso lhe conceder mais 5 pontos de energia." << std::endl;
+            p.energia = p.energia + 5;
             return;
         }else{
-            std::cout << "Que cara estranho....";
+            std::cout << "Fada diz: Muito obriga por me libertar, você salvou a minha vida, desejo-lhe sorte em sua missão!" << std::endl;
         }
 
     }
 
     if(opcao == 2){
-        std::cout << "O vendedor te olha e pergunta: Pronto pra batalha?" << std::endl;
+        std::cout << "Está difícil enxergar com tanta neblina, mas parece mesmo um lago, o que deseja fazer?" << std::endl;
         
-        std::cout << "1-Não\n2-Espada\n3-Adaga" << std::endl;
+        std::cout << "1-Retornar para a floresta \n2-Atravessar a nado \n3-Usar força mágica para se transportar para o outro lado do lago" << std::endl;
         std::cin >> opcao;
 
         if(opcao == 2){
 
-            std::cout << "Bela escolha!" << std::endl;
+            std::cout << "Para esta missão é necessária uma força física mínima de intensidade 15." << std::endl;
 
-            if(p.creditos >= 200){
-                std::cout << "Muitos cairão por essa lâmina!!" << std::endl;
-                p.creditos = p.creditos - 200;
+            if(p.forcaFisica >= 15){
+                std::cout << "Sua força física atual é de: " <<p.forcaFisica<< "\nVocê será capaz de atravessar!!" << std::endl;
+                p.forcaFisica = p.forcaFisica - 15;
 
                 mostraStatusDoJogador(p);
             }else{
-                std::cout << "Você não merece este tesouro plebeu!!" << std::endl;
+                std::cout << "Sua força física atual é de: " <<p.forcaFisica<< "\nVocê não possui força física suficiente para esta missão!!" << std::endl;
             }
 
         }else if(opcao == 3){
-            std::cout << "Pelo menos dá para apontar um lápis" << std::endl;
+            std::cout << "Para esta missão é necessária uma força mágica mínima de 30 orbites." << std::endl;
 
-            if(p.creditos >= 25){
-                std::cout << "ok..." << std::endl;
-                p.creditos = p.creditos - 25;
+            if(p.forcaMagica >= 30){
+                std::cout << "Sua força mágica atual é de: " <<p.forcaMagica<< "\nVocê será capaz de atravessar!!" << std::endl;
+                p.forcaMagica = p.forcaMagica - 30;
 
                 mostraStatusDoJogador(p);
             }else{
-                std::cout << "Saia daqui farrapo!!!" << std::endl;
+                std::cout << "Sua força mágica atual é de: " <<p.forcaMagica<< "\nVocê não possui força mágica suficiente para esta missão!!" << std::endl;
             }
         }else{
-            std::cout << "Vá embora!." << std::endl;
+            std::cout << "Parece que alguém aqui ficou com medinho!" << std::endl;
         }
     }
-}
-
-int main(int argc, char** argv)
-{
-    // s = seed rand = aleatório                                                
-    // std::time vem da biblioteca ctime  
-    std::srand(std::time(nullptr)); //<-- Retorno o Unix time stamp
-
-    struct Personagem j = boasVindasDoJogo();
-
-    std::cout << "Você recebeu um presente das divindades da terra!\n";
-    std::cout << "Lembre-se que nem sempre grandes poderes significam grande honra!\n";
-
-    mostraStatusDoJogador(j);
-
-    faseDaCidade(j);
-
-    mostraStatusDoJogador(j);
 }
