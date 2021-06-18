@@ -26,6 +26,13 @@ float geraAleatorio(){
 }
 
 struct Personagem boasVindasDoJogo(){
+    std::cout << "Boas vindas ao nosso mundo!\n";
+    std::cout << "Um sentimento de obscuridade tomou conta de nossa terra, \n";
+    std::cout << "o rei Demônio dominou as principais forças de defesa do nosso povo\n";
+    std::cout << "e a cada dia que passa as esperanças decaem mais e mais...\n";
+
+    std::cout << "Como somos um bando de incompetentes e não conseguimos nos defender\n";
+    std::cout << "precisamos de alguém que nos lidere para a derrocada deste maldito!\n";
     std::cout << "Você é nossa escolha!! E... a propósito... qual é mesmo o seu nome?\n";
 
     std::string nome;
