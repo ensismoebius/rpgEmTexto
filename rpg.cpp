@@ -345,7 +345,7 @@ int main(int argc, char** argv)
 
     mostraStatusDoJogador(j);
 
-    //faseDaCidade(j);
+    faseDaCidade(j);
     faseLabirinto(j);
 
     mostraStatusDoJogador(j);
