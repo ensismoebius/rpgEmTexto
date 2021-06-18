@@ -152,3 +152,21 @@ void faseDaFloresta(struct Personagem &p){
         }
     }
 }
+
+int main(int argc, char** argv)
+{
+    // s = seed rand = aleatório                                                
+    // std::time vem da biblioteca ctime  
+    std::srand(std::time(nullptr)); //<-- Retorno o Unix time stamp
+
+    struct Personagem j = boasVindasDoJogo();
+
+    std::cout << "Você recebeu um presente das divindades da terra!\n";
+    std::cout << "Lembre-se que nem sempre grandes poderes significam grande honra!\n";
+
+    mostraStatusDoJogador(j);
+
+    faseDaFloresta(j);
+
+    mostraStatusDoJogador(j);
+}
