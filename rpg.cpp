@@ -10,6 +10,19 @@
  * escolhas da/do jogadora/or pode mudar o final
  */
 
+struct InimigosGelidos
+{
+		std::string nome;
+		unsigned int dano;
+		unsigned int vidaFofo;
+		unsigned int danoFofo;
+		unsigned int dinheiro;
+		unsigned int vidaP;
+		unsigned int danoM;
+		unsigned int vidaM;
+		unsigned int veneno;
+};
+
 struct Personagem
 {
 		std::string nome;
@@ -20,239 +33,265 @@ struct Personagem
 		unsigned int creditos;
 };
 
-float geraAleatorio(){
-    return rand() / (float) RAND_MAX;
+float geraAleatorio()
+{
+	return rand() / (float) RAND_MAX;
 }
 
-struct Personagem boasVindasDoJogo(){
-    std::cout << "Bem vindo ao Hyako Secret Room!\n";
-    std::cout << "Voce esta em um mundo onde a ficção é a realidade, \n";
-    std::cout << "Com isso o mundo esta sobre ameaça de um ser poderoso chamado Leno Brega\n";
-    std::cout << "ele busca migrar o reino de hyako para sua coleção de planetas no sistema solar de bueno...\n";
+struct InimigosGelidos faseFlorestaGelida()
+{
 
-    std::cout << "nós de hyako secret room somos seres poderosos,porem ainda não podemos contra Leno brega\n";
-    std::cout << "Por isso te convocamos aqui neste mundo,sabemos que voce podera nos ajudar...\n";
-    std::cout << "Voce é a nossa unica salvação,nos diga quem é voce.\n";
-
-    std::string nome;
-    std::cin.ignore();
-    std::getline(std::cin, nome);
-
-    std::cout << "De agora em diante lhe chamaremos de Sr."<< nome <<"!\n";
-
-    struct Personagem eu;
-
- 
-
-    eu.nome = nome;
-    eu.energia = (geraAleatorio() * 90) + 10;
-    eu.altura = geraAleatorio() * 300;
-    eu.forcaFisica = geraAleatorio() * 100;
-    eu.forcaMagica = geraAleatorio() * 50;
-    eu.creditos = 26;
-
- 
-
-    return eu;
+	struct InimigosGelidos g;
+	g.danoFofo = (geraAleatorio() * 20) + 1000;
+	g.dano = geraAleatorio() * 80;
+	g.dinheiro = geraAleatorio() * 50;
+	g.vidaFofo = (geraAleatorio() * 50) + 1000;
+	g.vidaP = (geraAleatorio() * 90) + 10;
+	g.danoM = geraAleatorio() * 50;
+	g.vidaM = (geraAleatorio() * 90) + 200;
+	g.veneno = 7;
+	return g;
 }
 
-void mostraStatusDoJogador(struct Personagem &p){
+struct Personagem boasVindasDoJogo()
+{
+	std::cout << "Bem vindo ao Hyako Secret Room!\n";
+	std::cout << "Voce esta em um mundo onde a ficção é a realidade, \n";
+	std::cout << "Com isso o mundo esta sobre ameaça de um ser poderoso chamado Leno Brega\n";
+	std::cout << "ele busca migrar o reino de hyako para sua coleção de planetas no sistema solar de bueno...\n";
 
-    if(p.energia == 0){
-        std::cout << "press f to pay respect" << std::endl;
-        return;
-    }
+	std::cout << "nós de hyako secret room somos seres poderosos,porem ainda não podemos contra Leno brega\n";
+	std::cout << "Por isso te convocamos aqui neste mundo,sabemos que voce podera nos ajudar...\n";
+	std::cout << "Voce é a nossa unica salvação,nos diga quem é voce.\n";
 
-    std::cout << "Você agora tem " << p.altura/100.0 <<
-                " metros de altura, " << p.energia << " de energia com uma força de intensidade " <<
-                p.forcaFisica << " e um poder mágico de " <<
-                p.forcaMagica << " orbites $" << p.creditos << std::endl;
+	std::string nome;
+	std::cin.ignore();
+	std::getline(std::cin, nome);
+
+	std::cout << "De agora em diante lhe chamaremos de Sr." << nome << "!\n";
+
+	struct Personagem eu;
+
+	eu.nome = nome;
+	eu.energia = (geraAleatorio() * 90) + 10;
+	eu.altura = geraAleatorio() * 300;
+	eu.forcaFisica = geraAleatorio() * 100;
+	eu.forcaMagica = geraAleatorio() * 50;
+	eu.creditos = 26;
+
+	return eu;
 }
 
-void faseDaCidade(struct Personagem &p){
-    
-    unsigned int opcao = 0;
+void mostraStatusDoJogador(struct Personagem &p)
+{
 
-    while(opcao < 1 || opcao > 2){
-        std::cout << "voce está no quarto principal do reino, neste quarto voce ve duas portas: Uma porta te levara até a tenda e a outra porta te levara até uma loja de equipamentos.\n Que porta voce escolhera?" << std::endl;
-        std::cout << "1-Tenda\n2-Loja de equipamentos" << std::endl;
+	if (p.energia == 0)
+	{
+		std::cout << "press f to pay respect" << std::endl;
+		return;
+	}
 
-        std::cin >> opcao;
-    }
-
-    if(opcao == 1){
-        std::cout << "O vendedor te olha e pergunta: O que deseja meu caro?" << std::endl;
-        
-        std::cout << "1-Nada\n2-Comida\n3-esferas do dragão" << std::endl;
-        std::cin >> opcao;
-
-        if(opcao == 2){
-
-            opcao = 0;
-
-            while(opcao < 1 || opcao > 2){
-                std::cout << "1-Bife Acebolado (Dá muita energia)\n2-Banana Frita (Dá pouca energia)" << std::endl;
-                std::cin >> opcao;
-            }
-
-            switch(opcao){
-                case 1:
-                    if(p.creditos >= 50){
-                        p.energia += 50;
-                        p.creditos -= 50;
-                    }else{
-                        std::cout << "Desculpe mas não posso te vender isso..." << std::endl;
-                    }
-                    break;
-                case 2:
-                    if(p.creditos >= 10){
-                        p.energia += 10;
-                        p.creditos -= 10;
-                    }else{
-                        std::cout << "Desculpe mas não posso te vender isso..." << std::endl;
-                    }
-                    break;
-            }
-            return;
-
-        }else if(opcao == 3){
-            std::cout << "Esqueci,elas não estão a venda!!!" << std::endl;
-            p.energia = p.energia - p.energia;
-            return;
-        }else{
-            std::cout << "mas que sujeito estranho....";
-        }
-
-    }
-
-    if(opcao == 2){
-        std::cout << "O vendedor te pergunta: Pronto pra Descer o sarrafo em geral?" << std::endl;
-        
-        std::cout << "1-Não rapai\n2-kamado nichirin\n3-Death Note" << std::endl;
-        std::cin >> opcao;
-
-        if(opcao == 2){
-
-            std::cout << "Você tem bons olhos,porem não tem figuras suficientes inbecil" << std::endl;
-
-            if(p.creditos >= 200){
-                std::cout << "Muitos Onis cairão por essa Katana!!" << std::endl;
-                p.creditos = p.creditos - 200;
-
-                mostraStatusDoJogador(p);
-            }else{
-                std::cout << "Você não merece esta Katana,domine sua respiração primeiro!!" << std::endl;
-            }
-
-        }else if(opcao == 3){
-            std::cout << "Quem diria,agora vou mostrar o novo mundo para Leno Brega!" << std::endl;
-
-            if(p.creditos >= 25){
-                std::cout << "Muito bem..." << std::endl;
-                p.creditos = p.creditos - 25;
-
-                mostraStatusDoJogador(p);
-            }else{
-                std::cout << "Vaza daqui Fracote!!!" << std::endl;
-            }
-        }else{
-            std::cout << "MORRA!." << std::endl;
-        }
-    }
+	std::cout << "Você agora tem " << p.altura / 100.0 << " metros de altura, " << p.energia << " de energia com uma força de intensidade " << p.forcaFisica << " e um poder mágico de " << p.forcaMagica << " orbites $" << p.creditos << std::endl;
 }
 
-void faseDaVeinha(struct Personagem &p){
-    
-    unsigned int opcao=0;
+void faseDaCidade(struct Personagem &p)
+{
 
- 
+	unsigned int opcao = 0;
 
-       while(opcao < 1 || opcao > 3){
-        std::cout << "ao iniciar sua jornada, saindo de seu vilareijo calmo e pacífico," << std::endl;
-        std::cout << "essa é a realidade da grande maioria dos 'herois\n'" << std::endl;
-        std::cout << "após se distanciar relativamente de sua terra natal, você encontra um grupo de jovens, cuja aparência se assemelha aos seguidores do rei Demônio\n" << std::endl;
-        std::cout << "eles estão espancando uma senhora de aparência duvidosa\n você possui três opções: 1-procurar por ajuda\n 2-ignorar e seguir sua jornada\n 3-mesmo estando em desvantagem e possuir poucas forças, tentar salvar aquela senhora!" << std::endl;
-        std::cin >> opcao;
-    }
+	while (opcao < 1 || opcao > 2)
+	{
+		std::cout << "voce está no quarto principal do reino, neste quarto voce ve duas portas: Uma porta te levara até a tenda e a outra porta te levara até uma loja de equipamentos.\n Que porta voce escolhera?" << std::endl;
+		std::cout << "1-Tenda\n2-Loja de equipamentos" << std::endl;
 
- 
+		std::cin >> opcao;
+	}
 
-    if(opcao == 1){
-        
-        opcao=0;
-        
-        std::cout << "uma pequena e humilde vila está ao seu alcance, você corre para lá em procura de um guarda" << std::endl;
-        
-        std::cout << "ao encontrar um guarda, você explica a ocasião e pede por ajuda " << std::endl;
-        std::cout << "ambos saem correndo em direção á idosa e se deparam com uma espantosa cena!!!" << std::endl;
-        std::cout << "a idosa que estava sendo espancada, misteriosamente aparece sobre os corpos de todos os seus agressores(aparentemente inconscientes) " << std::endl;
-        std::cout << "ao questionar a idosa, ela misteriosamente some e deixa um pacote no chão " << std::endl;
-        std::cout << "1-abrir  2-guardar em sua mochila" << std::endl;
-        std::cin >> opcao;
-        
-        if(opcao == 1){
-            std::cout << "ao abri-la, você se depara com um misterioso item que te altera de alguma maneira" << std::endl;
-            p.energia = p.energia*1.15;
-            std::cout <<"você obteve um aumento em sua energia máxima! " << p.energia << std::endl;
-        }
-        }
+	if (opcao == 1)
+	{
+		std::cout << "O vendedor te olha e pergunta: O que deseja meu caro?" << std::endl;
 
- 
+		std::cout << "1-Nada\n2-Comida\n3-esferas do dragão" << std::endl;
+		std::cin >> opcao;
 
-       if(opcao == 2){
+		if (opcao == 2)
+		{
 
- 
+			opcao = 0;
 
-          std::cout << "é uma escolha egoísta, porém, segura, sua aventura continua!!!" << std::endl;  
+			while (opcao < 1 || opcao > 2)
+			{
+				std::cout << "1-Bife Acebolado (Dá muita energia)\n2-Banana Frita (Dá pouca energia)" << std::endl;
+				std::cin >> opcao;
+			}
 
- 
+			switch (opcao)
+			{
+				case 1:
+					if (p.creditos >= 50)
+					{
+						p.energia += 50;
+						p.creditos -= 50;
+					} else
+					{
+						std::cout << "Desculpe mas não posso te vender isso..." << std::endl;
+					}
+					break;
+				case 2:
+					if (p.creditos >= 10)
+					{
+						p.energia += 10;
+						p.creditos -= 10;
+					} else
+					{
+						std::cout << "Desculpe mas não posso te vender isso..." << std::endl;
+					}
+					break;
+			}
+			return;
 
-       }
+		} else if (opcao == 3)
+		{
+			std::cout << "Esqueci,elas não estão a venda!!!" << std::endl;
+			p.energia = p.energia - p.energia;
+			return;
+		} else
+		{
+			std::cout << "mas que sujeito estranho....";
+		}
 
- 
+	}
 
-    if(opcao == 3){
-        
-        opcao = 0; 
-         while(opcao < 1 || opcao > 2){
-        std::cout << "após muito apanhar, sua vitória é certa, os agressores recuam e deixam a idosa em paz" << std::endl;
-        std::cout << "IDOSA:muito obrigada por sua coragem, jovem, sei que é algo egoísta de minha parte, mas...\n poderia me ajudar a carregar meus pertences até minha moradia? " << std::endl;  
-        std::cout << "1-ajuda\n  2-inventa alguma desculpa" << std::endl;
-        std::cin >> opcao;
-        p.energia = p.energia*0.20;
-         }
-         
-         if (opcao == 1){
-             std::cout << "a viagem é longa e cansativa, sua vitória não foi barata, consequentemente sua energia está escassa\n" << std::endl;
-             std::cout << "seu sangramento cessa vagarosamente, voce está só o pó!\n " << p.energia << "de vida restante" << std::endl;
-             std::cout << "quando chega na 'casa' da senhora, percebe que na verdade é uma pequena cabana no meio de uma floresta\n" << std::endl;
-             std::cout << "ao adentrar seus aposentos, a velha senhore lhe cura com estranhos liquidos(aparentemente algo comestivel)\n" << std::endl;
-             std::cout << "seu corpo se cura rapidamente e sente-se com novos poderes\n" << std::endl;
-             p.energia = p.energia*5;
-             std::cout << "a idosa se apresenta, seu nome é Lucy.\n" << std::endl;
-             std::cout << "contando sua história, ela diz que seu filho era um bravo guerreiro que morrera lutando bravamente contra o rei demônio\n" << std::endl;
-             std::cout << "como recompensa por sua coragem, você recebe o antigo equipamento de seu falecido filho, assim, podendo lutar, equilibradamente contra inimigos poderosos" << std::endl;
-             p.energia=p.energia*1.8;
-             p.forcaFisica=p.forcaFisica*2.5;
-             p.forcaMagica=p.forcaMagica*0.6;
-             std::cout << "com a armadura e espada de um bravo guerreiro seus atributos sobem: " << std::endl;
-             std::cout << "sua nova força física é " << p.forcaFisica << std::endl;
-             std::cout << "com potentes defesas, sua vida máxima é elevada " << p.energia <<  std::endl;
-             
-         }
-         if(opcao== 2){
-             std::cout << "após a luta, sua sobrevivência é duvidosa.\n" << std::endl;
-             std::cout << "como forma de agradecimento, a senhora retira uma estranha esfera de sua bolsa e diz que será ultil de alguma forma\n" << std::endl;
-             std::cout << "sua vida é curada completamente e você recebe equipamentos básicos de um mago, subindo assim, seus atributos\n" << std::endl;
-             std::cout << "IDOSA: meu filho foi um bravo guerreiro outrora, infelizmente nao habita entre nós, creio que habilidades de um mago, com ataques a longa distância, seja algo que te ajudará a sobreviver!" << std::endl;
-             std::cout << "sua força mágica aumenta: " << p.forcaMagica << std::endl;
-             
-         }
-        
-        
-        
-        
-    }
+	if (opcao == 2)
+	{
+		std::cout << "O vendedor te pergunta: Pronto pra Descer o sarrafo em geral?" << std::endl;
+
+		std::cout << "1-Não rapai\n2-kamado nichirin\n3-Death Note" << std::endl;
+		std::cin >> opcao;
+
+		if (opcao == 2)
+		{
+
+			std::cout << "Você tem bons olhos,porem não tem figuras suficientes inbecil" << std::endl;
+
+			if (p.creditos >= 200)
+			{
+				std::cout << "Muitos Onis cairão por essa Katana!!" << std::endl;
+				p.creditos = p.creditos - 200;
+
+				mostraStatusDoJogador(p);
+			} else
+			{
+				std::cout << "Você não merece esta Katana,domine sua respiração primeiro!!" << std::endl;
+			}
+
+		} else if (opcao == 3)
+		{
+			std::cout << "Quem diria,agora vou mostrar o novo mundo para Leno Brega!" << std::endl;
+
+			if (p.creditos >= 25)
+			{
+				std::cout << "Muito bem..." << std::endl;
+				p.creditos = p.creditos - 25;
+
+				mostraStatusDoJogador(p);
+			} else
+			{
+				std::cout << "Vaza daqui Fracote!!!" << std::endl;
+			}
+		} else
+		{
+			std::cout << "MORRA!." << std::endl;
+		}
+	}
+}
+
+void faseDaVeinha(struct Personagem &p)
+{
+
+	unsigned int opcao = 0;
+
+	while (opcao < 1 || opcao > 3)
+	{
+		std::cout << "ao iniciar sua jornada, saindo de seu vilareijo calmo e pacífico," << std::endl;
+		std::cout << "essa é a realidade da grande maioria dos 'herois\n'" << std::endl;
+		std::cout << "após se distanciar relativamente de sua terra natal, você encontra um grupo de jovens, cuja aparência se assemelha aos seguidores do rei Demônio\n" << std::endl;
+		std::cout << "eles estão espancando uma senhora de aparência duvidosa\n você possui três opções: 1-procurar por ajuda\n 2-ignorar e seguir sua jornada\n 3-mesmo estando em desvantagem e possuir poucas forças, tentar salvar aquela senhora!" << std::endl;
+		std::cin >> opcao;
+	}
+
+	if (opcao == 1)
+	{
+
+		opcao = 0;
+
+		std::cout << "uma pequena e humilde vila está ao seu alcance, você corre para lá em procura de um guarda" << std::endl;
+
+		std::cout << "ao encontrar um guarda, você explica a ocasião e pede por ajuda " << std::endl;
+		std::cout << "ambos saem correndo em direção á idosa e se deparam com uma espantosa cena!!!" << std::endl;
+		std::cout << "a idosa que estava sendo espancada, misteriosamente aparece sobre os corpos de todos os seus agressores(aparentemente inconscientes) " << std::endl;
+		std::cout << "ao questionar a idosa, ela misteriosamente some e deixa um pacote no chão " << std::endl;
+		std::cout << "1-abrir  2-guardar em sua mochila" << std::endl;
+		std::cin >> opcao;
+
+		if (opcao == 1)
+		{
+			std::cout << "ao abri-la, você se depara com um misterioso item que te altera de alguma maneira" << std::endl;
+			p.energia = p.energia * 1.15;
+			std::cout << "você obteve um aumento em sua energia máxima! " << p.energia << std::endl;
+		}
+	}
+
+	if (opcao == 2)
+	{
+
+		std::cout << "é uma escolha egoísta, porém, segura, sua aventura continua!!!" << std::endl;
+
+	}
+
+	if (opcao == 3)
+	{
+
+		opcao = 0;
+		while (opcao < 1 || opcao > 2)
+		{
+			std::cout << "após muito apanhar, sua vitória é certa, os agressores recuam e deixam a idosa em paz" << std::endl;
+			std::cout << "IDOSA:muito obrigada por sua coragem, jovem, sei que é algo egoísta de minha parte, mas...\n poderia me ajudar a carregar meus pertences até minha moradia? " << std::endl;
+			std::cout << "1-ajuda\n  2-inventa alguma desculpa" << std::endl;
+			std::cin >> opcao;
+			p.energia = p.energia * 0.20;
+		}
+
+		if (opcao == 1)
+		{
+			std::cout << "a viagem é longa e cansativa, sua vitória não foi barata, consequentemente sua energia está escassa\n" << std::endl;
+			std::cout << "seu sangramento cessa vagarosamente, voce está só o pó!\n " << p.energia << "de vida restante" << std::endl;
+			std::cout << "quando chega na 'casa' da senhora, percebe que na verdade é uma pequena cabana no meio de uma floresta\n" << std::endl;
+			std::cout << "ao adentrar seus aposentos, a velha senhore lhe cura com estranhos liquidos(aparentemente algo comestivel)\n" << std::endl;
+			std::cout << "seu corpo se cura rapidamente e sente-se com novos poderes\n" << std::endl;
+			p.energia = p.energia * 5;
+			std::cout << "a idosa se apresenta, seu nome é Lucy.\n" << std::endl;
+			std::cout << "contando sua história, ela diz que seu filho era um bravo guerreiro que morrera lutando bravamente contra o rei demônio\n" << std::endl;
+			std::cout << "como recompensa por sua coragem, você recebe o antigo equipamento de seu falecido filho, assim, podendo lutar, equilibradamente contra inimigos poderosos" << std::endl;
+			p.energia = p.energia * 1.8;
+			p.forcaFisica = p.forcaFisica * 2.5;
+			p.forcaMagica = p.forcaMagica * 0.6;
+			std::cout << "com a armadura e espada de um bravo guerreiro seus atributos sobem: " << std::endl;
+			std::cout << "sua nova força física é " << p.forcaFisica << std::endl;
+			std::cout << "com potentes defesas, sua vida máxima é elevada " << p.energia << std::endl;
+
+		}
+		if (opcao == 2)
+		{
+			std::cout << "após a luta, sua sobrevivência é duvidosa.\n" << std::endl;
+			std::cout << "como forma de agradecimento, a senhora retira uma estranha esfera de sua bolsa e diz que será ultil de alguma forma\n" << std::endl;
+			std::cout << "sua vida é curada completamente e você recebe equipamentos básicos de um mago, subindo assim, seus atributos\n" << std::endl;
+			std::cout << "IDOSA: meu filho foi um bravo guerreiro outrora, infelizmente nao habita entre nós, creio que habilidades de um mago, com ataques a longa distância, seja algo que te ajudará a sobreviver!" << std::endl;
+			std::cout << "sua força mágica aumenta: " << p.forcaMagica << std::endl;
+
+		}
+
+	}
 }
 
 void faseGothamCity(struct Personagem &p)
@@ -839,6 +878,187 @@ void faseLabirinto(struct Personagem &p)
 	}
 }
 
+void faseFlorestaGelida(struct Personagem &p, struct InimigosGelidos &g)
+{
+
+	std::cout << "Logo apos adquirir o -artefato magico-, nosso proximo destino sera a Floresta Gelida, o lar da pena de uma Fenix Glacial," << std::endl;
+	std::cout << "que possui poderes magicos de bencaos, no qual me protegeria das criaturas da Floresta de Nederviersel." << std::endl;
+
+	unsigned int opcao = 0;
+	unsigned int esc;
+	unsigned int luta = 0;
+
+	while (opcao < 1 || opcao > 3)
+	{
+		std::cout << "Na entrada da floresta, ouvimos um som aterrorizador vindo do seu interior." << std::endl;
+		std::cout << "Diz a lenda, que uma criatura perversa e gigantesca perambula por entre as arvores esguias, se escondendo na densa névoa causada pelo gelo." << std::endl;
+		std::cout << "Ao adentrar na nevoa, percebo alguns vultos ao meu redor, que vao tomando forma de pequenas criaturas fofinhas." << std::endl;
+		std::cout << "Ao observar sua fisionomia, decido qual sera minha atitude.\n" << std::endl;
+		std::cout << "1 - Atacar \n2 - Deixar elas em paz \n3 - Tentar um contato amigavel" << std::endl;
+
+		std::cin >> opcao;
+	}
+
+	if (opcao == 1)
+	{
+		std::cout << "Empunho minha arma e desfiro um golpe contra a criatura fofinha que se enfurece e me ataca, causando um dano fatal." << std::endl;
+		if (g.danoFofo > 0)
+		{
+			std::cout << "Voce sucumbiu a investida de uma fera fofuxa." << std::endl;
+		}
+		return;
+	}
+
+	if (opcao == 2)
+	{
+		std::cout << "Apos deixar as ferinhas em paz, caminho sem rumo na esperança de encontrar o item sagrado." << std::endl;
+		std::cout << "Vagueio por horas ate avistar o que poderia ser uma preguica das neves gigante, com vida de " << g.vidaP << " e dano de " << g.dano << " que logo nota minha presença e vem em minha direcao." << std::endl;
+		std::cout << "-Pense rapido heroi-." << std::endl;
+
+		std::cout << "1-Enfrentar\n2-Esconder\n3-Fugir" << std::endl;
+		std::cin >> esc;
+
+		switch (esc)
+		{
+			case 1:
+				if (p.forcaFisica > g.vidaP)
+				{
+					std::cout << "Derrubei essa preguica com um unico golpe." << std::endl;
+					p.creditos = p.creditos + g.dinheiro;
+					p.forcaFisica = p.forcaFisica + 10;
+					p.forcaMagica = p.forcaMagica + 5;
+					mostraStatusDoJogador(p);
+					std::cout << "Depois de derrubar o monstro, recolho os espolios e sigo meu caminho em direcao ao item sagrado." << std::endl;
+					std::cout << "Depois de muito tempo, chegamos a uma clareira com uma nevoa muito espessa, mesmo assim consigo avistar uma luz extremamente forte vindo do centro." << std::endl;
+					std::cout << "Essa luz, A Pena de Fenix de Gelo, bem na minha frente." << std::endl;
+					std::cout << "Me aproximando do objeto, sinto uma presenca muito poderosa se aproximando." << std::endl;
+					std::cout << "La da nevoa surge uma imensa criatura branca, que se camufla com a neve, emite sons estranhos e solta uma gosma verde da boca, que parece ser toxico, " << std::endl;
+					std::cout << "Ela se aproxima e uma luta começa pela posse do item sagrado" << std::endl;
+					std::cout << "O inimigo tem " << g.vidaM << " de vida e " << g.danoM << " de dano." << std::endl;
+
+				} else if (p.forcaFisica < g.vidaP)
+				{
+					std::cout << "A preguica me machucou " << std::endl;
+					p.energia = p.energia - g.dano;
+					if (g.dano > p.energia)
+					{
+						std::cout << "Fui atropelado e morri." << std::endl;
+						return;
+					} else
+					{
+						p.energia = p.energia - g.dano;
+						std::cout << "Fui atropelado e nao morri." << std::endl;
+						std::cout << "A Preguica continuou correndo sem direcao me deixando no chao com " << p.energia << " de vida, mesmo assim eu rapidamente, sem exitar, me levanto e continuo minha jornada." << std::endl;
+						std::cout << "Depois de muito tempo, cheguei a uma clareira com uma nevoa muito espessa, mesmo assim consigo avistar uma luz extremamente forte vindo do centro." << std::endl;
+						std::cout << "Essa luz, A Pena de Fenix de Gelo, bem na minha frente." << std::endl;
+						std::cout << "Me aproximando do objeto, sinto uma presenca muito poderosa se aproximando." << std::endl;
+						std::cout << "La da nevoa surge uma imensa criatura branca, que se camufla com a neve, emite sons estranhos e solta uma gosma verde da boca, que parece ser toxico, " << std::endl;
+						std::cout << "Ela se aproxima e uma luta começa pela posse do item sagrado" << std::endl;
+						std::cout << "O inimigo tem " << g.vidaM << " de vida e " << g.danoM << " de dano." << std::endl;
+					}
+				} else
+				{
+					std::cout << "Batemos a cabeca e cada um foi para o seu lado sem dano." << std::endl;
+					std::cout << "Depois de me recuperar da colisao, ainda tonto, segui em frente na minha jornada." << std::endl;
+					std::cout << "Depois de muito tempo, cheguei a uma clareira com uma nevoa muito espessa, mesmo assim consigo avistar uma luz extremamente forte vindo do centro." << std::endl;
+					std::cout << "Essa luz, A Pena de Fenix de Gelo, bem na minha frente." << std::endl;
+					std::cout << "Me aproximando do objeto, sinto uma presenca muito poderosa se aproximando." << std::endl;
+					std::cout << "La da nevoa surge uma imensa criatura branca, que se camufla com a neve, emite sons estranhos e solta uma gosma verde da boca, que parece ser toxico, " << std::endl;
+					std::cout << "Ela se aproxima e uma luta começa pela posse do item sagrado" << std::endl;
+					std::cout << "O inimigo tem " << g.vidaM << " de vida e " << g.danoM << " de dano." << std::endl;
+				}
+				break;
+			case 2:
+				std::cout << "Desesperado vendo a preguiça vindo na minha direção, olho para os lados na procura de algum lugar para esconder." << std::endl;
+				std::cout << "Quandoa avisto uma arvore antiga oca, decido me esconder" << std::endl;
+				std::cout << "Espio pra ver se a preguica que carinhosamente apelidei de Sidnice, como nao avisti ela nas proximidades, saio do tronco e continuo minha viagem." << std::endl;
+				std::cout << "Depois de muito tempo, cheguei a uma clareira com uma nevoa muito espessa, mesmo assim consigo avistar uma luz extremamente forte vindo do centro." << std::endl;
+				std::cout << "Essa luz, A Pena de Fenix de Gelo, bem na minha frente." << std::endl;
+				std::cout << "Me aproximando do objeto, sinto uma presenca muito poderosa se aproximando." << std::endl;
+				std::cout << "La da nevoa surge uma imensa criatura branca, que se camufla com a neve, emite sons estranhos e solta uma gosma verde da boca, que parece ser toxico, " << std::endl;
+				std::cout << "Ela se aproxima e uma luta começa pela posse do item sagrado" << std::endl;
+				std::cout << "O inimigo tem " << g.vidaM << " de vida e " << g.danoM << " de dano." << std::endl;
+				break;
+			case 3:
+				std::cout << "Sem saber o que fazer, decido fugir dessa investida correndo na direção oposta." << std::endl;
+				std::cout << "Depois de muito correr, sem conseguir perder a vista do monstro, por um descuido, não vejo um abismo na minha frente e acabo caindo no limbo," << std::endl;
+				std::cout << "me perdendo an escuridão e morrendo na queda." << std::endl;
+				p.energia = p.energia - p.energia;
+				return;
+			default:
+				std::cout << "A Preguica nao vai ficar correndo no mesmo lugar esperando voce se decidir, DECIDE LOGO.\n Demorou, voce morreu por ser lerdo demais." << std::endl;
+				return;
+		}
+	}
+	if (opcao == 3)
+	{
+		std::cout << "Me deparando com aquelas criaturas que se parecem com coelhos felpudos, tento um contato mais amigavel." << std::endl;
+		std::cout << "Feito esse contato com sucesso, percebo que elas nao sao tao assustadoras quanto pensei, se tornando bem doceis, " << std::endl;
+		std::cout << "Eu acho que eles gostaram de mim, mas começam a correr em uma direcao." << std::endl;
+		std::cout << "Sem entender nada, começo a segui-los incansavelmente atraves da floresta." << std::endl;
+		std::cout << "Depois de muito tempo, chegamos a uma clareira com uma nevoa muito espessa, mesmo assim consigo avistar uma luz extremamente forte vindo do centro." << std::endl;
+		std::cout << "Essa luz, A Pena de Fenix Glacial, bem na minha frente, nao acredito que os monstrinhos me trouxera ate aqui." << std::endl;
+		std::cout << "Me aproximando do objeto, sinto uma presenca muito poderosa se aproximando." << std::endl;
+		std::cout << "La da nevoa surge uma imensa criatura branca, que se camufla com a neve, emite sons estranhos e solta uma gosma verde da boca, que parece ser toxico, " << std::endl;
+		std::cout << "Murilo de Gelo se aproxima e uma luta começa pela posse do item sagrado" << std::endl;
+		std::cout << "O inimigo tem " << g.vidaM << " de vida e " << g.danoM << " de dano." << std::endl;
+	}
+	do
+	{
+		std::cout << "O que deseja fazer? \n1 - Ataque Fisico\n2 - Ataque Magico \n3 - Defender" << std::endl;
+		std::cin >> luta;
+		switch (luta)
+		{
+			case 1:
+				if (g.vidaM < p.forcaFisica)
+				{
+					g.vidaM = 0;
+				} else
+				{
+					g.vidaM = g.vidaM - p.forcaFisica;
+					std::cout << "O Boss esta com " << g.vidaM << " de vida restante." << std::endl;
+				}
+
+				break;
+			case 2:
+				if (g.vidaM < p.forcaMagica)
+				{
+					g.vidaM = 0;
+				} else
+				{
+					g.vidaM = g.vidaM - p.forcaMagica;
+					std::cout << "O Boss esta com " << g.vidaM << " de vida restante." << std::endl;
+				}
+				break;
+			case 3:
+				if (p.energia < g.danoM)
+				{
+					p.energia = 0;
+				} else
+				{
+					p.energia = (p.energia - g.danoM) - g.veneno;
+					std::cout << "Voce esta com " << p.energia << " de vida, tomando mais " << g.veneno << " de dano venenoso" << std::endl;
+				}
+				break;
+			default:
+				std::cout << "Voce tem que decidir o que fazer, ficar parado ai nao vai te fazer um heroi." << std::endl;
+		}
+	} while (g.vidaM != 0 && p.energia != 0);
+	if (g.vidaM == 0)
+	{
+		std::cout << "O inimigo morreu, vamos continura nossa jornada" << std::endl;
+		p.creditos = p.creditos + g.dinheiro;
+		p.forcaFisica = p.forcaFisica + 50;
+		p.forcaMagica = p.forcaMagica + 50;
+		mostraStatusDoJogador(p);
+	}
+	if (p.energia == 0)
+	{
+		std::cout << "Voce morreu, sua jornada acabou" << std::endl;
+	}
+	std::cout << "Conseguimos nossa Pena da Fenix Glacial, proxima parada, Floresta de Nederviersel." << std::endl;
+}
+
 int main(int argc, char **argv)
 {
 	// s = seed rand = aleatório
@@ -846,6 +1066,7 @@ int main(int argc, char **argv)
 	std::srand(std::time(nullptr)); //<-- Retorno o Unix time stamp
 
 	struct Personagem j = boasVindasDoJogo();
+	struct InimigosGelidos g = faseFlorestaGelida();
 
 	std::cout << "Você recebeu um presente das divindades da terra!\n";
 	std::cout << "Lembre-se que nem sempre grandes poderes significam grande honra!\n";
@@ -873,10 +1094,14 @@ int main(int argc, char **argv)
 	mostraStatusDoJogador(j);
 	std::cout << std::endl << "Gothan City" << std::endl;
 	faseGothamCity(j);
-	
+
 	mostraStatusDoJogador(j);
 	std::cout << std::endl << "A velha" << std::endl;
 	faseDaVeinha(j);
+
+	mostraStatusDoJogador(j);
+	std::cout << std::endl << "Floresta gélida" << std::endl;
+	faseFlorestaGelida(j, g);
 
 	mostraStatusDoJogador(j);
 }
