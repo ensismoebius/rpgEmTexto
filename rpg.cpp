@@ -70,10 +70,9 @@ void faseDaFloresta(struct Personagem &p){
     
     unsigned int opcao = 0;
 
-    while(opcao < 1 || opcao > 2){
+    while(opcao < 1 || opcao > 3){
         std::cout << "Você está na floresta, a sua frente tem dois caminhos com neblina, no da direita parece que é possível ver uma cabana, no esquerdo, considerando que há mais neblina, é possível que tenha alguma fonte de água.\nPara onde você deseja ir?" << std::endl;
         std::cout << "1-Direita\n2-Esquerda\n3-Retornar a fase da cidade" << std::endl;
-
         std::cin >> opcao;
     }
 
@@ -87,7 +86,7 @@ void faseDaFloresta(struct Personagem &p){
 
             opcao = 0;
 
-            while(opcao < 1 || opcao > 2){
+            while(opcao < 1 || opcao > 3){
                 std::cout << "1-Uma espada flamejante \n2-um escudo congelante" << std::endl;
                 std::cin >> opcao;
             }
@@ -96,20 +95,24 @@ void faseDaFloresta(struct Personagem &p){
             {
                 case 1:
                         std::cout << "Fada diz: Ótima escolha, isso lhe ajudará a acabar com aqueles que cruzarem seu caminho." << std::endl;
-            
+            p.forcaFisica = p.forcaFisica + 7;
+                std::cout << "A intensidade de sua força foi aumentada em 7 pontos com esta aquisição, sendo ela agora de intensidade: " << p.forcaFisica<<std::endl;
+                
                 break;
                 
             
                 case 2:
                         std::cout << "Fada diz: Muito bem, aqui está o escudo que te protegerá contra seus combatentes." << std::endl;
-            
-                  break; 
+                p.forcaFisica = p.forcaFisica + 3;
+                std::cout << "A intensidade de sua força foi aumentada em 3 pontos com esta aquisição, sendo ela agora de intensidade: " << p.forcaFisica<<std::endl;
+                break; 
             }
             return;
 
         }else if(opcao == 3){
             std::cout << "Fada diz: Posso lhe conceder mais 5 pontos de energia." << std::endl;
             p.energia = p.energia + 5;
+            std::cout << "A intensidade de sua energia foi aumentada conforme a promessa da fada e agora você passou a ter uma energia de: " << p.energia<< " pontos"<<std::endl;
             return;
         }else{
             std::cout << "Fada diz: Muito obriga por me libertar, você salvou a minha vida, desejo-lhe sorte em sua missão!" << std::endl;
@@ -124,12 +127,23 @@ void faseDaFloresta(struct Personagem &p){
         std::cin >> opcao;
 
         if(opcao == 2){
-
-            std::cout << "Para esta missão é necessária uma força física mínima de intensidade 15." << std::endl;
-
-            if(p.forcaFisica >= 15){
-                std::cout << "Sua força física atual é de: " <<p.forcaFisica<< "\nVocê será capaz de atravessar!!" << std::endl;
-                p.forcaFisica = p.forcaFisica - 15;
+            std::cout << "Para esta missão é necessária uma força física mínima de intensidade 20." << std::endl;
+            
+            if(p.forcaFisica >= 20){
+                std::cout << "Sua força física atual é de: " <<p.forcaFisica<< ".\nE caso execute esta missão ela lhe diminuirá esta força em 4 pontos.\nDeseja continuar?\n1-Sim\n2-Não" << std::endl;
+                std::cin >> opcao;
+                
+                switch(opcao)
+            {
+                case 1:
+                p.forcaFisica = p.forcaFisica - 4;
+                std::cout << "Travessia concluída com sucesso!\nA intensidade de sua força física foi diminuída em 4 pontos, sendo ela agora de intensidade: " << p.forcaFisica<<std::endl;
+                break;
+    
+                case 2:
+                std::cout << "Realmente, não parecia um bom negócio!\nRetorne para a floresta e veja se encontra um caminho mais fácil." << std::endl;
+                break; 
+            }
 
                 mostraStatusDoJogador(p);
             }else{
@@ -137,20 +151,40 @@ void faseDaFloresta(struct Personagem &p){
             }
 
         }else if(opcao == 3){
-            std::cout << "Para esta missão é necessária uma força mágica mínima de 30 orbites." << std::endl;
-
-            if(p.forcaMagica >= 30){
-                std::cout << "Sua força mágica atual é de: " <<p.forcaMagica<< "\nVocê será capaz de atravessar!!" << std::endl;
-                p.forcaMagica = p.forcaMagica - 30;
+            std::cout << "Para esta missão é necessária uma força mágica mínima de 30 orbites.";
+        if(p.forcaMagica >= 30)
+        {
+            std::cout << "\nSua força mágica atual é de: " <<p.forcaMagica<< "\nE caso execute esta missão ela lhe diminuirá a força mágica em 10 orbites\nDeseja continuar?\n1-Sim\n2-Não" << std::endl;
+            std::cin >> opcao;
+            
+            switch(opcao)
+            {
+                case 1:
+                p.forcaMagica = p.forcaMagica - 10;
+                std::cout << "Travessia concluída com sucesso!\nA intensidade de sua força mágica foi diminuída em 10 pontos, sendo ela agora de: " << p.forcaMagica<<" orbites"<<std::endl;
+                break;
+    
+                case 2:
+                std::cout << "Realmente, não parecia um bom negócio!\nRetorne para a floresta e veja se encontra um caminho mais fácil." << std::endl;
+                break; 
+            }
 
                 mostraStatusDoJogador(p);
             }else{
                 std::cout << "Sua força mágica atual é de: " <<p.forcaMagica<< "\nVocê não possui força mágica suficiente para esta missão!!" << std::endl;
-            }
-        }else{
+        }
+    }else{
             std::cout << "Parece que alguém aqui ficou com medinho!" << std::endl;
         }
     }
+    
+    if(opcao == 3){
+        std::cout << "Você retornou a fase da cidade" << std::endl;
+        
+        
+
+    }
+
 }
 
 int main(int argc, char** argv)
