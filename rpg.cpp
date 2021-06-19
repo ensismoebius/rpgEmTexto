@@ -13,7 +13,6 @@
 struct Personagem
 {
 		std::string nome;
-
 		unsigned int energia;
 		unsigned int altura;
 		unsigned int forcaFisica;
