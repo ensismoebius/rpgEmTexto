@@ -3,3 +3,4 @@
 # Fase da caverna - OK
 # Fase da batalha - OK
 # Fase da floresta - OK
+# Fase de Gothan City - OK
