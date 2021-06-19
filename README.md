@@ -4,3 +4,4 @@
 # Fase da batalha - OK
 # Fase da floresta - OK
 # Fase de Gothan City - OK
+# Fase da velha - OK
