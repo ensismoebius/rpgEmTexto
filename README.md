@@ -2,3 +2,4 @@
 # Fase do labirinto - OK
 # Fase da caverna - OK
 # Fase da batalha - OK
+# Fase da floresta - OK
