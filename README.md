@@ -6,4 +6,6 @@
 # Fase de Gothan City - OK
 # Fase da velha - OK
 # Fase da guilda - OK
-# Próxima integração: pr13
+# Fase dos trapaceiros - OK
+# Fase da Masmorra - OK
+# Próxima integração: pr16
