@@ -26,6 +26,7 @@ struct InimigosGelidos
 struct Personagem
 {
 		std::string nome;
+		std::string armamento;
 		unsigned int energia;
 		unsigned int altura;
 		unsigned int forcaFisica;
@@ -1059,204 +1060,437 @@ void faseFlorestaGelida(struct Personagem &p, struct InimigosGelidos &g)
 	std::cout << "Conseguimos nossa Pena da Fenix Glacial, proxima parada, Floresta de Nederviersel." << std::endl;
 }
 
-void FaseGuilda(struct Personagem &p){
-    unsigned int escolha = -1;
+void faseGuilda(struct Personagem &p)
+{
+	unsigned int escolha = -1;
 
-    while(escolha < 1 || escolha > 2){
-        std::cout << "Você está andando pela floresta até que se depara com um recrutamento para magos." << std::endl;
-        std::cout << "Então você decide emtrar." << std::endl;
-        std::cout << "Ao entrar na guilda um poder foi-lhe consedido:" << std::endl;
-        p.forcaMagica = p.forcaMagica + 10;
-        std::cout << "Agora você tem uma força Mágica de " << p.forcaMagica << std::endl;
-        std::cout << "Um velho mago lhe da as instruções: \n1-Você pode fazer missões, para ganhar orbites \n2-Ou então você pode fazer missões para ganhar intens mágicos." << std::endl;
-        std::cin >> escolha;
-    }
+	while (escolha < 1 || escolha > 2)
+	{
+		std::cout << "Você está andando pela floresta até que se depara com um recrutamento para magos." << std::endl;
+		std::cout << "Então você decide emtrar." << std::endl;
+		std::cout << "Ao entrar na guilda um poder foi-lhe consedido:" << std::endl;
+		p.forcaMagica = p.forcaMagica + 10;
+		std::cout << "Agora você tem uma força Mágica de " << p.forcaMagica << std::endl;
+		std::cout << "Um velho mago lhe da as instruções: \n1-Você pode fazer missões, para ganhar orbites \n2-Ou então você pode fazer missões para ganhar intens mágicos." << std::endl;
+		std::cin >> escolha;
+	}
 
-    if(escolha == 1){
-        std::cout << "Você tem duas missões: \n1-caçar um javali que esta atormentando a vila (nivel - facil) \n2-buscar o tesouro na torre do Dragão (nivel - difícil)" << std::endl;
-        std::cin >> escolha;
+	if (escolha == 1)
+	{
+		std::cout << "Você tem duas missões: \n1-caçar um javali que esta atormentando a vila (nivel - facil) \n2-buscar o tesouro na torre do Dragão (nivel - difícil)" << std::endl;
+		std::cin >> escolha;
 
-        if(escolha == 1){
-            std::cout << "Chegando na vila você se depara com o javali." << std::endl;
-            std::cout << "1-espantar \n2-matar." << std::endl;
-            std::cin >> escolha;
+		if (escolha == 1)
+		{
+			std::cout << "Chegando na vila você se depara com o javali." << std::endl;
+			std::cout << "1-espantar \n2-matar." << std::endl;
+			std::cin >> escolha;
 
-            if(escolha == 1){
-                std::cout << "Você espanta o javali e volta para a guilda dos magos." << std::endl;
-                p.creditos = p.creditos + 15;
+			if (escolha == 1)
+			{
+				std::cout << "Você espanta o javali e volta para a guilda dos magos." << std::endl;
+				p.creditos = p.creditos + 15;
 
-                mostraStatusDoJogador(p);
-                
-                FaseGuilda(p);
-            }else if(escolha == 2){
-                std::cout << "Você golpeia o javali mantando-o" << std::endl;
-                p.energia = p.energia - 5;
-                p.creditos = p.creditos + 24;
+				mostraStatusDoJogador(p);
 
-                mostraStatusDoJogador(p);
-            }
-        }else if(escolha == 2){
-            std::cout << "Chegando na torre do dragão você encontra o tesouro com facilidade, mas logo em seguida um tenebroso dragão aparece! " << std::endl;
-            std::cout << "Te dando duas opções:\n1-Fugir\n2-Lutar" << std::endl;
-            std::cin >> escolha;
+				faseGuilda(p);
+			} else if (escolha == 2)
+			{
+				std::cout << "Você golpeia o javali mantando-o" << std::endl;
+				p.energia = p.energia - 5;
+				p.creditos = p.creditos + 24;
 
-            if(escolha == 1){
-                std::cout << "Você então decidiu fugir? foi um erro!" << std::endl;
-                std::cout << "Você infelizmente tropeça e cai pelas escadas da torre e o dragão atiça fogo pela boca em sua direção. o que você fará agora?" << std::endl;
-                std::cout << "1-usar a magia para tentar se defender\n2-tentar se esquivar." << std::endl;
-                std::cin >> escolha;
+				mostraStatusDoJogador(p);
+			}
+		} else if (escolha == 2)
+		{
+			std::cout << "Chegando na torre do dragão você encontra o tesouro com facilidade, mas logo em seguida um tenebroso dragão aparece! " << std::endl;
+			std::cout << "Te dando duas opções:\n1-Fugir\n2-Lutar" << std::endl;
+			std::cin >> escolha;
 
-                switch(escolha){
-                    case 1:
-                        if(p.forcaMagica >= 37){
-                            std::cout << "Você conseguiu se defender e consequentemente fez o dragão adormecer e conseguiu sair do torre são e salvo..." << std::endl;
-                            std::cout << "Muito bem! Você conseguiu pegar o tesouro!" << std::endl;
-                            std::cout << "Você volta para a guilda dos magos." << std::endl;
-                            p.creditos = p.creditos + 41;
+			if (escolha == 1)
+			{
+				std::cout << "Você então decidiu fugir? foi um erro!" << std::endl;
+				std::cout << "Você infelizmente tropeça e cai pelas escadas da torre e o dragão atiça fogo pela boca em sua direção. o que você fará agora?" << std::endl;
+				std::cout << "1-usar a magia para tentar se defender\n2-tentar se esquivar." << std::endl;
+				std::cin >> escolha;
 
-                            mostraStatusDoJogador(p);
-                        }else{
-                            std::cout << "Você não tem magia o suficiente e então você morre!" << std::endl;
-                        }break;
-                    case 2:
-                        std::cout << "Você não é rápido o suficiente e então você morre!" << std::endl;
-                    break;
-                    default:
-                        std::cout << "Erro" << std::endl;
-                    break;
-                }
-            }else if(escolha == 2){//lutar com o dragao
-                std::cout << "Você escolheu dar o primeiro golpe:\n1-Usar magia para enfrenta-lo\n2-Mudar de ideia e tentar domestica-lo" << std::endl;
-                std::cin >> escolha;
+				switch (escolha)
+				{
+					case 1:
+						if (p.forcaMagica >= 37)
+						{
+							std::cout << "Você conseguiu se defender e consequentemente fez o dragão adormecer e conseguiu sair do torre são e salvo..." << std::endl;
+							std::cout << "Muito bem! Você conseguiu pegar o tesouro!" << std::endl;
+							std::cout << "Você volta para a guilda dos magos." << std::endl;
+							p.creditos = p.creditos + 41;
 
-                switch(escolha){
-                    case 1:
-                        if(p.forcaFisica >= 40 && p.forcaMagica >= 30){
-                            std::cout << "Você consegue atacar o dragão e corre para se esconder nos vão da torre."<< std::endl;
-                            std::cout << "O dragão desnorteado começa a atear fogo em toda parte e começa a vir em sua direção.\nO que você fará agora?"<< std::endl;
-                            std::cout << "1-usar a magia para tentar se defender\n2-tentar se esquivar." << std::endl;
-                            std::cin >> escolha;
-
-                            switch(escolha){
-                                case 1:
-                                    if(p.forcaMagica >= 37){
-                                        std::cout << "Você conseguiu se defender e consequentemente fez o dragão adormecer e conseguiu sair do torre são e salvo..." << std::endl;
-                                        std::cout << "Muito bem! Você conseguiu pegar o tesouro!" << std::endl;
-                                        std::cout << "Você volta para a guilda dos magos." << std::endl;
-                                        p.creditos = p.creditos + 125;
-
-                                        mostraStatusDoJogador(p);
-                                    }else{
-                                        std::cout << "Você não tem magia o suficiente e então você morre!" << std::endl;
-                                    }return;
-                                case 2:
-                                    std::cout << "Você não é rápido o suficiente e então você morre!" << std::endl;
-                                return;
-                                default:
-                                    std::cout << "Erro" << std::endl;
-                                return;
-                            }
-                        }else{
-                            std::cout << "Você se cansa rápido e não tem forças o suficiente para enfrenta-lo" << std::endl;
-                        }
+							mostraStatusDoJogador(p);
+						} else
+						{
+							std::cout << "Você não tem magia o suficiente e então você morre!" << std::endl;
+						}
 						break;
-                    case 2:
-                        std::cout << "Você tenta domestica-lo porém o dragão se irrita.\nVocê morre!" << std::endl;
-                    return;
-                    default:
-                        std::cout << "Erro" << std::endl;
-                    return;
-                }
-            }
-        }return;
-    }if(escolha == 2){
-        std::cout << "Você tem uma missão: \nIr até o castelo abandonado e pegar a joia do Fim" << std::endl;
+					case 2:
+						std::cout << "Você não é rápido o suficiente e então você morre!" << std::endl;
+						break;
+					default:
+						std::cout << "Erro" << std::endl;
+						break;
+				}
+			} else if (escolha == 2)
+			{ //lutar com o dragao
+				std::cout << "Você escolheu dar o primeiro golpe:\n1-Usar magia para enfrenta-lo\n2-Mudar de ideia e tentar domestica-lo" << std::endl;
+				std::cin >> escolha;
 
-        escolha = -1;
+				switch (escolha)
+				{
+					case 1:
+						if (p.forcaFisica >= 40 && p.forcaMagica >= 30)
+						{
+							std::cout << "Você consegue atacar o dragão e corre para se esconder nos vão da torre." << std::endl;
+							std::cout << "O dragão desnorteado começa a atear fogo em toda parte e começa a vir em sua direção.\nO que você fará agora?" << std::endl;
+							std::cout << "1-usar a magia para tentar se defender\n2-tentar se esquivar." << std::endl;
+							std::cin >> escolha;
 
-        if(escolha == -1){
-            std::cout << "No castelo você tem três alternativas\n1-Entrar pela porta da frente\n2-Entrar pelos fundos\n3-Criar sua propia entrada criando um portal" << std::endl;
-            std::cin >> escolha;
+							switch (escolha)
+							{
+								case 1:
+									if (p.forcaMagica >= 37)
+									{
+										std::cout << "Você conseguiu se defender e consequentemente fez o dragão adormecer e conseguiu sair do torre são e salvo..." << std::endl;
+										std::cout << "Muito bem! Você conseguiu pegar o tesouro!" << std::endl;
+										std::cout << "Você volta para a guilda dos magos." << std::endl;
+										p.creditos = p.creditos + 125;
 
-            switch(escolha){
-            case 1:
-                std::cout << "Ao entrar pela porta da frente, você cai em uma armadilha e\nVocê morre!" << std::endl;
-            return;
-            case 2:
-                std::cout << "Ao entrar pela porta da frente, você se depara com um caminho suspeito e pode ser perigoso!\nFique atento!" << std::endl;
-                std::cout << "1-Para desistir\n2-Para continuar" << std::endl;
-                std::cin >> escolha;
-                
-                if(escolha == 1){
-                    std::cout << "Você após procurar muito, desiste e vai embora de mãos vazias" << std::endl;
-                    p.energia = p.energia - 20;
+										mostraStatusDoJogador(p);
+									} else
+									{
+										std::cout << "Você não tem magia o suficiente e então você morre!" << std::endl;
+									}
+									return;
+								case 2:
+									std::cout << "Você não é rápido o suficiente e então você morre!" << std::endl;
+									return;
+								default:
+									std::cout << "Erro" << std::endl;
+									return;
+							}
+						} else
+						{
+							std::cout << "Você se cansa rápido e não tem forças o suficiente para enfrenta-lo" << std::endl;
+						}
+						break;
+					case 2:
+						std::cout << "Você tenta domestica-lo porém o dragão se irrita.\nVocê morre!" << std::endl;
+						return;
+					default:
+						std::cout << "Erro" << std::endl;
+						return;
+				}
+			}
+		}
+		return;
+	}
+	if (escolha == 2)
+	{
+		std::cout << "Você tem uma missão: \nIr até o castelo abandonado e pegar a joia do Fim" << std::endl;
 
-                    mostraStatusDoJogador(p);
+		escolha = -1;
 
-                }else if(escolha == 2){
-                    std::cout << "Você se depara com uma porta...mas ela esta emperrada\1-Ignorar\n2-Tentar abrir" << std::endl;
-                    std::cin >> escolha;
-                    if(escolha == 1){
-                        std::cout << "Você após procurar muito, desiste e vai embora de mãos vazias" << std::endl;
-                        p.energia = p.energia - 20;
+		if (escolha == -1)
+		{
+			std::cout << "No castelo você tem três alternativas\n1-Entrar pela porta da frente\n2-Entrar pelos fundos\n3-Criar sua propia entrada criando um portal" << std::endl;
+			std::cin >> escolha;
 
-                        mostraStatusDoJogador(p);
-                    return;
-                    }else if(escolha == 2){
-                        if(p.forcaFisica >= 30){
-                             std::cout << "Após muito esforço a porta se abre e você encontra a joia do fim!" << std::endl;
-                             std::cout << "Muito bem! Você conseguiu pegar a joia!" << std::endl;
-                             p.forcaMagica = p.forcaMagica + 16;
+			switch (escolha)
+			{
+				case 1:
+					std::cout << "Ao entrar pela porta da frente, você cai em uma armadilha e\nVocê morre!" << std::endl;
+					return;
+				case 2:
+					std::cout << "Ao entrar pela porta da frente, você se depara com um caminho suspeito e pode ser perigoso!\nFique atento!" << std::endl;
+					std::cout << "1-Para desistir\n2-Para continuar" << std::endl;
+					std::cin >> escolha;
 
-                             mostraStatusDoJogador(p);
-                        }else{
-                            std::cout << "Você após procurar muito, desiste e vai embora de mãos vazias" << std::endl;
-                            p.energia = p.energia - 20;
+					if (escolha == 1)
+					{
+						std::cout << "Você após procurar muito, desiste e vai embora de mãos vazias" << std::endl;
+						p.energia = p.energia - 20;
 
-                            mostraStatusDoJogador(p);
-                        }
-                    }
-                }return;
-            case 3:
-                if(p.forcaMagica >= 37){
-                    std::cout << "Após muito esforço você consegue abrir um portal e na mais pura sorte você encontra a joia do fim!" << std::endl;
-                    if(p.forcaMagica >= 45){
-                        std::cout << "Com o portal aberto você conseguiu pegar a joia! e sair com tranquilidade!" << std::endl;
-                        p.forcaMagica = p.forcaMagica + 16;
+						mostraStatusDoJogador(p);
 
-                        mostraStatusDoJogador(p);
-                    }else{
-                        std::cout << "Mas, sua magia não se estabilizou e o portal fechou, e sua magia não é suficiente para abrir outro\nTendo somente uma saida: a porta emperrada!" << std::endl;
-                        if(p.forcaFisica >= 30){
-                             std::cout << "Após muito esforço a porta se abre e você e você consegue sair!" << std::endl;
-                             std::cout << "Muito bem! Você conseguiu pegar a joia e sair são e salvo!" << std::endl;
-                             p.forcaMagica = p.forcaMagica + 16;
+					} else if (escolha == 2)
+					{
+						std::cout << "Você se depara com uma porta...mas ela esta emperrada\1-Ignorar\n2-Tentar abrir" << std::endl;
+						std::cin >> escolha;
+						if (escolha == 1)
+						{
+							std::cout << "Você após procurar muito, desiste e vai embora de mãos vazias" << std::endl;
+							p.energia = p.energia - 20;
 
-                             mostraStatusDoJogador(p);
-                        }else{
-                            std::cout << "Após horas sem saber o que fazer você e você consegue uzar as suas forças magicas para usar a joia do fim e se teletransportar para fora do castelo!\n Porém ao sair, a joia se quebra e você sai de mãos vazias." << std::endl;
+							mostraStatusDoJogador(p);
+							return;
+						} else if (escolha == 2)
+						{
+							if (p.forcaFisica >= 30)
+							{
+								std::cout << "Após muito esforço a porta se abre e você encontra a joia do fim!" << std::endl;
+								std::cout << "Muito bem! Você conseguiu pegar a joia!" << std::endl;
+								p.forcaMagica = p.forcaMagica + 16;
 
-                            mostraStatusDoJogador(p);
-                        }return;
-                    }
-                }else{
-                    std::cout << "Sua magia não é suficiente para abrir esta passagem" << std::endl;
-                }return;
-            default:
-                std::cout << "Erro" << std::endl;
-            return;
-            }
-        }
-    }
+								mostraStatusDoJogador(p);
+							} else
+							{
+								std::cout << "Você após procurar muito, desiste e vai embora de mãos vazias" << std::endl;
+								p.energia = p.energia - 20;
 
+								mostraStatusDoJogador(p);
+							}
+						}
+					}
+					return;
+				case 3:
+					if (p.forcaMagica >= 37)
+					{
+						std::cout << "Após muito esforço você consegue abrir um portal e na mais pura sorte você encontra a joia do fim!" << std::endl;
+						if (p.forcaMagica >= 45)
+						{
+							std::cout << "Com o portal aberto você conseguiu pegar a joia! e sair com tranquilidade!" << std::endl;
+							p.forcaMagica = p.forcaMagica + 16;
+
+							mostraStatusDoJogador(p);
+						} else
+						{
+							std::cout << "Mas, sua magia não se estabilizou e o portal fechou, e sua magia não é suficiente para abrir outro\nTendo somente uma saida: a porta emperrada!" << std::endl;
+							if (p.forcaFisica >= 30)
+							{
+								std::cout << "Após muito esforço a porta se abre e você e você consegue sair!" << std::endl;
+								std::cout << "Muito bem! Você conseguiu pegar a joia e sair são e salvo!" << std::endl;
+								p.forcaMagica = p.forcaMagica + 16;
+
+								mostraStatusDoJogador(p);
+							} else
+							{
+								std::cout << "Após horas sem saber o que fazer você e você consegue uzar as suas forças magicas para usar a joia do fim e se teletransportar para fora do castelo!\n Porém ao sair, a joia se quebra e você sai de mãos vazias." << std::endl;
+
+								mostraStatusDoJogador(p);
+							}
+							return;
+						}
+					} else
+					{
+						std::cout << "Sua magia não é suficiente para abrir esta passagem" << std::endl;
+					}
+					return;
+				default:
+					std::cout << "Erro" << std::endl;
+					return;
+			}
+		}
+	}
 }
 
+void faseTrapaceiros(struct Personagem &p)
+{
+	unsigned int opcao = -1;
+
+	while (opcao < 1 || opcao > 2)
+	{
+		std::cout << "Agora tu estás perambulando pelos campos e montanhas até que acidentalmente defronta-se com dois trapaceiros. Tu tens duas opções: " << std::endl;
+		std::cout << "1-Indecisão\n2-Fujir" << std::endl;
+		std::cin >> opcao;
+	}
+
+	if (opcao == 1)
+	{
+		if (p.armamento == "")
+		{
+			std::cout << "Você vai na mão contra os trapaceiros..." << std::endl;
+			p.creditos = p.creditos - p.creditos;
+			std::cout << "Você foi roubado e agora possui " << "$" << p.creditos << " orbites" << std::endl;
+
+			if (p.creditos <= 5)
+			{
+				std::cout << "Você sai andando desanimado, e encontra uma mulher pela qual, deixou cair uma joia no chão." << std::endl;
+				std::cout << "Você tem duas alternativas:" << std::endl;
+				std::cout << "1-Devolver para ela\n2-Roubar a joia" << std::endl;
+				std::cin >> opcao;
+
+				switch (opcao)
+				{
+					case 1:
+						std::cout << "Você grita para a ela e a devolve a joia." << std::endl;
+						std::cout << "Ela muito agradescida lhe-da uma recompensa de $26 orbites" << std::endl;
+						p.creditos = p.creditos + 26;
+
+						mostraStatusDoJogador(p);
+
+						std::cout << "Então tu poderá voltar para a cidade ou continuar vossa jornada..." << std::endl;
+						std::cout << "1-voltar para a cidade\n2-continuar jornada" << std::endl;
+						std::cin >> opcao;
+
+						if (opcao == 1)
+						{
+							faseDaCidade(p);
+						} else if (opcao == 2)
+						{
+							std::cout << "Tu continuas vosso caminho..." << std::endl;
+						}
+						return;
+					case 2:
+						std::cout << "Você pega a joia e vai para um comércio." << std::endl;
+						std::cout << "O vendedor te olha e pergunta: O que tens para mim meu jovem ?" << std::endl;
+						std::cout << "Tu mostra para ele a joia e o comerciante te faz duas ofertas:" << std::endl;
+						std::cout << "1-Compro esta joia de ti por $30 Orbites\n2-Compro esta joia de ti por uma poção de Força Mágica" << std::endl;
+						std::cin >> opcao;
+						if (opcao == 1)
+						{
+							p.creditos = p.creditos + 30;
+
+							mostraStatusDoJogador(p);
+
+							std::cout << "Então tu poderá voltar para a cidade ou continuar vossa jornada..." << std::endl;
+							std::cout << "1-voltar para a cidade\n2-continuar jornada" << std::endl;
+							std::cin >> opcao;
+
+							if (opcao == 1)
+							{
+								faseDaCidade(p);
+							} else if (opcao == 2)
+							{
+								std::cout << "Tu continuas vosso caminho..." << std::endl;
+							}
+							return;
+
+						} else if (opcao == 2)
+						{
+							p.forcaMagica = p.forcaMagica + 9;
+
+							mostraStatusDoJogador(p);
+
+							std::cout << "Então tu poderá voltar para a cidade ou continuar vossa jornada..." << std::endl;
+							std::cout << "1-voltar para a cidade\n2-continuar jornada" << std::endl;
+							std::cin >> opcao;
+
+							if (opcao == 1)
+							{
+								faseDaCidade(p);
+							} else if (opcao == 2)
+							{
+								std::cout << "Tu continuas vosso caminho..." << std::endl;
+							}
+							return;
+
+						}
+						break;
+					default:
+						std::cout << "Erro" << std::endl;
+						break;
+				}
+			}
+
+		} else
+		{
+			std::cout << "Tu sacas vosso(a) " << p.armamento << " e intimida os trapaceiros" << std::endl;
+			std::cout << "Eles não se intimidam e partem para cima. Tu tens a oportunidade de matá-los, o que tu farás?" << std::endl;
+			std::cout << "1-Os Matarei\n2-Os Imobilizarei" << std::endl;
+			std::cin >> opcao;
+
+			if (opcao == 2)
+			{
+				opcao = 0;
+
+				while (opcao < 1 || opcao > 2)
+				{
+					std::cout << "A partir de qual parte do corpo desejas tu imobilizar os dois trapaceiros?" << std::endl;
+					std::cout << "1-A partir da cabeça\n2-A partir das pernas" << std::endl;
+					std::cin >> opcao;
+
+					switch (opcao)
+					{
+						case 1:
+							if (p.forcaFisica >= 30)
+							{
+								p.energia -= 70;
+								p.creditos -= 20;
+								std::cout << "Você os imobilizou e continuou a vossa jornada" << std::endl;
+							} else
+							{
+								std::cout << "Desculpe, mas não dá..." << std::endl;
+							}
+							break;
+						case 2:
+							if (p.forcaFisica >= 15)
+							{
+								p.energia += 50;
+								p.creditos -= 10;
+								std::cout << "Você os imobilizou e continuou a vossa jornada" << std::endl;
+							} else
+							{
+								std::cout << "Desculpe, mas não dá..." << std::endl;
+							}
+							break;
+						default:
+							std::cout << "Erro" << std::endl;
+							break;
+					}
+					return;
+				}
+			} else if (opcao == 1)
+			{
+				std::cout << "Preparem-se para morrerem, indolentes!!!" << std::endl;
+				p.energia = p.energia - p.energia;
+				std::cout << "Eles morrem e tu continuas vosso caminho..." << std::endl;
+				return;
+			} else
+			{
+				std::cout << "Não farás nada? (...)";
+				return;
+			}
+		}
+	}
+	if (opcao == 2)
+	{
+		std::cout << "Você então decidiu fujir? foi um erro!" << std::endl;
+		std::cout << "Você infelizmente tropeça e é capturado pelos dois trapaceiros. O que farás agora?" << std::endl;
+
+		std::cout << "1-Pedir redenção\n2-Escapar\n3-Tentar matá-los" << std::endl;
+		std::cin >> opcao;
+
+		if (opcao == 1)
+		{
+			std::cout << "Eles nunca lhe darão redenção!" << std::endl;
+		} else if (opcao == 3)
+		{
+			std::cout << "Você sorrateiramente puxa uma faquinha escondida em suas vestes, infelizmente um trapaceiro percebe e te nocauteia" << std::endl;
+
+			if (p.energia >= 60)
+			{
+				std::cout << "Você perdeu 60 pontos de energia!..." << std::endl;
+				p.energia = p.energia - 60;
+
+				mostraStatusDoJogador(p);
+			} else
+			{
+				std::cout << "Você infelizmente morreu!!!" << std::endl;
+			}
+		} else if (opcao == 2)
+		{
+			std::cout << "Ao fugir, você chega até um desfiladeiro, um local sem saida, escorrega e cai..." << std::endl;
+		} else
+		{
+			std::cout << "Não fará nada?" << std::endl;
+		}
+	}
+
+}
 
 int main(int argc, char **argv)
 {
 	// s = seed rand = aleatório
 	// std::time vem da biblioteca ctime
-	std::srand(std::time(nullptr)); //<-- Retorno o Unix time stamp
+	std::srand(std::time(nullptr));	//<-- Retorno o Unix time stamp
 
 	struct Personagem j = boasVindasDoJogo();
 	struct InimigosGelidos g = faseFlorestaGelida();
@@ -1298,14 +1532,12 @@ int main(int argc, char **argv)
 
 	mostraStatusDoJogador(j);
 	std::cout << std::endl << "Guilda" << std::endl;
-	FaseGuilda(j);
+	faseGuilda(j);
+
+	mostraStatusDoJogador(j);
+	std::cout << std::endl << "Trapaceiros" << std::endl;
+	faseTrapaceiros(j);
 
 	mostraStatusDoJogador(j);
 }
-
-
-
-
-
-
 
