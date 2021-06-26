@@ -10,4 +10,5 @@
 # Fase da Masmorra - OK
 # Fase da Dangeon - OK
 # Fase da Montanha - OK
-# Próxima integração: pr18
+# Fase da Floresta II - OK
+# Próxima integração: pr19
