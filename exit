@@ -1,0 +1,144 @@
+[33mcommit 6837411671c21512d449f17eebbe49c6504d6735[m[33m ([m[1;36mHEAD -> [m[1;32mtesteMenu[m[33m)[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Thu Jun 17 18:49:49 2021 -0300
+
+    continuação da fase dungeon
+
+[33mcommit a84ce7e9a771bfa55b7fdf98b90260dbc666c04e[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Thu Jun 17 14:16:26 2021 -0300
+
+    Continuação da missão de alto nivel
+
+[33mcommit 0564197d6d11601284a1f7221060315d8fef65b9[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Thu Jun 17 11:32:36 2021 -0300
+
+    Adentrando as situações da primeira missão
+
+[33mcommit f30e453b722e677ec37177ce988d8dcafd21827d[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Tue Jun 15 23:32:17 2021 -0300
+
+    Adicionei a continuação das fases
+
+[33mcommit 3111c2c0d26a2d30f5dc3950e21724f666252659[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Tue Jun 15 21:49:21 2021 -0300
+
+    CONSEGUI O MENU AEE
+
+[33mcommit e1318c3d7776e495c5497b62785a3735076c9ef2[m[33m ([m[1;32mfasecerta[m[33m)[m
+Merge: fdf0f58 e6df75d
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Tue Jun 8 18:53:53 2021 -0300
+
+    Mesclei a branch Addfase com a main
+
+[33mcommit e6df75dcac1237e953abb1962918860bbcdd50d0[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Tue Jun 8 18:51:20 2021 -0300
+
+    Adicionei as opções de missão dentro da FaseDaDungeon
+
+[33mcommit fdf0f58801adb04c37c1bdb9454c48e1b9f055c5[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Tue Jun 8 18:02:24 2021 -0300
+
+    Foi adicionado pelo proprio VsCode um arquivo Executavel para ser testado
+
+[33mcommit 3c99f9185ab1e193d641a4cdbdb01fee25b16dd1[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Mon Jun 7 20:36:37 2021 -0300
+
+    Deixando claro que o projeto é feito por Ensismoebius
+
+[33mcommit 6b7c00ab5b8e65e29237c44a8de816ad9722963c[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Mon Jun 7 14:09:04 2021 -0300
+
+    Arrumando o arquvio RPG.exe desnecessario colocado
+
+[33mcommit a7a7cd0ad4a163da07636470149c9f15c54b9555[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Mon Jun 7 14:00:42 2021 -0300
+
+    não sei o que está acontecendo aqui ainda
+
+[33mcommit 6147ec7eb0aad87b3f9ca2d8499c5008f245ba0c[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 17:48:37 2021 -0300
+
+    A partir de agora começamos
+
+[33mcommit 708a85e8bc818d287c497df72798e47a3a7d3c6c[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 12:47:42 2021 -0300
+
+    bora começar
+
+[33mcommit a8e57449211ffd797b3eca448adc0f1896e5a26c[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 12:37:02 2021 -0300
+
+    Adicionei o arquivo/programa RPG em texto para começar o projeto
+
+[33mcommit 14c92937af7f8932f536b9aa0d2425fdf6757315[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 12:34:48 2021 -0300
+
+    só apaguei
+
+[33mcommit c0147611a8d49c406623edc5587053282a7f9e6f[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 12:33:20 2021 -0300
+
+    Só mostrar pro Samuel
+
+[33mcommit fb7b0af9f30e921f003e389fe1d124cc357b837c[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 12:29:07 2021 -0300
+
+    RAMBORA
+
+[33mcommit 640dcb4abc170c6e1428171d8d15b599915d5a15[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 12:28:13 2021 -0300
+
+    agora vai LESGOOOOOOO
+
+[33mcommit 32e0c8b16b8809476609ec43cf1954fabffb0b0b[m
+Author: Phantomhive <82524939+vitorPhantomhive@users.noreply.github.com>
+Date:   Sun Jun 6 12:26:01 2021 -0300
+
+    só mais um de  todos os testes
+
+[33mcommit d26f5f42bb2af17228758041d59b3bfca0a1ba21[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 12:24:25 2021 -0300
+
+    Coloquei outro nome para o texto teste
+
+[33mcommit aeeea526c8ff2ccd8b3b541121f4ef4972085550[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 12:20:22 2021 -0300
+
+    Só mais um teste para ver se esta funcionando com GITHUB
+
+[33mcommit 2bc1c72312cbb0720803367b131840f87b4f8800[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 11:55:02 2021 -0300
+
+    Ćonfigurando a segunda vertente da (master)
+
+[33mcommit 30a498cc258913c3833c330d4758ff9f2f42b6d5[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 11:44:24 2021 -0300
+
+    Deixando tudo configurado
+
+[33mcommit e667cc3f4915de6b128f02a81be8453734a97f6a[m
+Author: Vitor <vitorkhaled47@gmail.com>
+Date:   Sun Jun 6 11:37:10 2021 -0300
+
+    Só configurando o GIT para fazer o rpg
