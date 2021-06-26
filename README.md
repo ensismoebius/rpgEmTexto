@@ -11,4 +11,5 @@
 # Fase da Dangeon - OK
 # Fase da Montanha - OK
 # Fase da Floresta II - OK
-# Próxima integração: pr19
+# Fase da Livro - OK
+# Próxima integração: pr20
