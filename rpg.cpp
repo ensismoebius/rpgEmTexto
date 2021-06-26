@@ -1956,5 +1956,11 @@ int main(int argc, char **argv)
 	faseTrapaceiros(j);
 
 	mostraStatusDoJogador(j);
+	std::cout << std::endl << "Masmorra" << std::endl;
+	faseDaMasmorra(j);
+
+
+
+	mostraStatusDoJogador(j);
 }
 
