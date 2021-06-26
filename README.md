@@ -5,3 +5,5 @@
 # Fase da floresta - OK
 # Fase de Gothan City - OK
 # Fase da velha - OK
+# Fase da guilda - OK
+# Próxima integração: pr13
