@@ -10,6 +10,16 @@
  * escolhas da/do jogadora/or pode mudar o final.
  */
 
+struct inimigoFloresta
+{
+		std::string nome;
+
+		unsigned int energia;
+		unsigned int forcaFisica;
+		unsigned int forcaMagica;
+		unsigned int creditos;
+};
+
 struct InimigosGelidos
 {
 		std::string nome;
@@ -37,6 +47,18 @@ struct Personagem
 float geraAleatorio()
 {
 	return rand() / (float) RAND_MAX;
+}
+
+void mostraStatusDoInimigo(struct inimigoFloresta &f)
+{
+	if (f.energia == 0)
+	{
+		std::cout << "O inimigo morreu" << std::endl;
+		return;
+	}
+	std::cout << " Vida:" << f.energia << "\n"
+			"Forca Magica:" << f.forcaMagica << "\n" << "Forca Fisica:" << f.forcaFisica << std::endl;
+
 }
 
 struct InimigosGelidos faseFlorestaGelida()
