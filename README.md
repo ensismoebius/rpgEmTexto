@@ -9,4 +9,5 @@
 # Fase dos trapaceiros - OK
 # Fase da Masmorra - OK
 # Fase da Dangeon - OK
-# Próxima integração: pr17
+# Fase da Montanha - OK
+# Próxima integração: pr18
