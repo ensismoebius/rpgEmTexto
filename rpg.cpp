@@ -129,7 +129,7 @@ struct Personagem boasVindasDoJogo()
 	eu.altura = geraAleatorio() * 300;
 	eu.forcaFisica = geraAleatorio() * 100;
 	eu.forcaMagica = geraAleatorio() * 50;
-	eu.vidaDoBrendon=(geraAleatorio() * 1000) + 300;
+	eu.vidaDoBrendon = (geraAleatorio() * 1000) + 300;
 	eu.creditos = 26;
 
 	return eu;
@@ -142,8 +142,9 @@ void mostraStatusDoJogador(struct Personagem &p)
 	{
 		std::cout << "press f to pay respect" << std::endl;
 		return;
-	}else if(p.vidaDoBrendon == 0){
-	    std::cout << "Brendon está morto" << std::endl;
+	} else if (p.vidaDoBrendon == 0)
+	{
+		std::cout << "Brendon está morto" << std::endl;
 	}
 
 	std::cout << "Você agora tem " << p.altura / 100.0 << " metros de altura, " << p.energia << " de energia com uma força de intensidade " << p.forcaFisica << " e um poder mágico de " << p.forcaMagica << " orbites $" << p.creditos << std::endl;
@@ -2581,6 +2582,118 @@ void naomateobrendon(struct Personagem &p)
 
 }
 
+void faseDaCidade2(struct Personagem &p)
+{
+
+	unsigned int opcao = 0;
+
+	while (opcao < 1 || opcao > 2)
+	{
+		std::cout << "Você está na rua principal da cidade, nesta rua você vê dois estabelecimentos: Uma quitanda de um lado uma loja de armas do outro.\n Para onde você deseja ir?" << std::endl;
+		std::cout << "1-mercadinho\n2-Loja de armaduras" << std::endl;
+
+		std::cin >> opcao;
+	}
+
+	if (opcao == 1)
+	{
+		std::cout << "O vendedor te olha e pergunta: O que deseja meu caro?" << std::endl;
+
+		std::cout << "1-Nada\n2-Comida\n3-a vitoria" << std::endl;
+		std::cin >> opcao;
+
+		if (opcao == 2)
+		{
+
+			opcao = 0;
+
+			while (opcao < 1 || opcao > 2)
+			{
+				std::cout << "1-feijão (Dá muita energia)\n2-espinafre (Dá pouca energia)" << std::endl;
+				std::cin >> opcao;
+			}
+
+			switch (opcao)
+			{
+				case 1:
+					if (p.creditos >= 50)
+					{
+						p.energia += 50;
+						p.creditos -= 50;
+					} else
+					{
+						std::cout << "Desculpe mas não posso te vender isso..." << std::endl;
+					}
+					break;
+				case 2:
+					if (p.creditos >= 10)
+					{
+						p.energia += 10;
+						p.creditos -= 10;
+					} else
+					{
+						std::cout << "Desculpe mas não posso te vender isso..." << std::endl;
+					}
+					break;
+			}
+			return;
+
+		} else if (opcao == 3)
+		{
+			std::cout << "Prepare-se para perder idiota!!!" << std::endl;
+			p.energia = p.energia - p.energia;
+			return;
+		} else
+		{
+			std::cout << "Que cara estranho....";
+		}
+
+	}
+
+	if (opcao == 2)
+	{
+		std::cout << "O vendedor te olha e pergunta: Pronto pra batalha?" << std::endl;
+
+		std::cout << "1-Não\n2-Espada\n3-Martelo" << std::endl;
+		std::cin >> opcao;
+
+		if (opcao == 2)
+		{
+
+			std::cout << "Bela escolha!" << std::endl;
+
+			if (p.creditos >= 200)
+			{
+				std::cout << "Muitos cairão por essa lâmina!!" << std::endl;
+				p.creditos = p.creditos - 200;
+
+				mostraStatusDoJogador(p);
+			} else
+			{
+				std::cout << "Pena você não merece este tesouro plebeu!!" << std::endl;
+			}
+
+		} else if (opcao == 3)
+		{
+			std::cout << "Pelo menos dá para fazer se defender kkk" << std::endl;
+
+			if (p.creditos >= 25)
+			{
+				std::cout << "ok..." << std::endl;
+				p.creditos = p.creditos - 25;
+
+				mostraStatusDoJogador(p);
+			} else
+			{
+				std::cout << "Saia daqui farrapo!!!" << std::endl;
+			}
+		} else
+		{
+			std::cout << "Vá embora!." << std::endl;
+		}
+	}
+}
+
 int main(int argc, char **argv)
 {
 	// s = seed rand = aleatório
@@ -2648,6 +2761,10 @@ int main(int argc, char **argv)
 	mostraStatusDoJogador(j);
 	std::cout << std::endl << "O livro" << std::endl;
 	faseDoLivro(j);
+
+	mostraStatusDoJogador(j);
+	std::cout << std::endl << "Cidade II" << std::endl;
+	faseDaCidade2(j);
 
 	mostraStatusDoJogador(j);
 }

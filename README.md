@@ -13,4 +13,4 @@
 # Fase da Floresta II - OK
 # Fase da Livro - OK
 # Fase da Brendon - OK
-# Próxima integração: pr21?
+# Fase da Cidade II - OK
