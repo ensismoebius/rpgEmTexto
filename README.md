@@ -8,4 +8,5 @@
 # Fase da guilda - OK
 # Fase dos trapaceiros - OK
 # Fase da Masmorra - OK
-# Próxima integração: pr16
+# Fase da Dangeon - OK
+# Próxima integração: pr17
