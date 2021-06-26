@@ -12,4 +12,5 @@
 # Fase da Montanha - OK
 # Fase da Floresta II - OK
 # Fase da Livro - OK
-# Próxima integração: pr20
+# Fase da Brendon - OK
+# Próxima integração: pr21?

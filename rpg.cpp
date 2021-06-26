@@ -49,6 +49,7 @@ struct Personagem
 		unsigned int forcaMagica;
 		unsigned int creditos;
 		unsigned int habilidadesMagicas;
+		unsigned int vidaDoBrendon;
 };
 
 // 1/2 Estrutura Inimigo
@@ -128,6 +129,7 @@ struct Personagem boasVindasDoJogo()
 	eu.altura = geraAleatorio() * 300;
 	eu.forcaFisica = geraAleatorio() * 100;
 	eu.forcaMagica = geraAleatorio() * 50;
+	eu.vidaDoBrendon=(geraAleatorio() * 1000) + 300;
 	eu.creditos = 26;
 
 	return eu;
@@ -140,6 +142,8 @@ void mostraStatusDoJogador(struct Personagem &p)
 	{
 		std::cout << "press f to pay respect" << std::endl;
 		return;
+	}else if(p.vidaDoBrendon == 0){
+	    std::cout << "Brendon está morto" << std::endl;
 	}
 
 	std::cout << "Você agora tem " << p.altura / 100.0 << " metros de altura, " << p.energia << " de energia com uma força de intensidade " << p.forcaFisica << " e um poder mágico de " << p.forcaMagica << " orbites $" << p.creditos << std::endl;
@@ -2398,100 +2402,183 @@ void faseDaMontanha(struct Personagem &p, struct Inimigo &i)
 	std::cout << "\n------------------------------------------------------------------------------------------\n" << std::endl;
 }
 
-void faseDoLivro(struct Personagem &p){ //minha fase
-    
-unsigned int opcao=0;
-    
-std::cout << "Você passou pela cidade, mas, ainda não concluiu; ";
-std::cout << "Precisa coletar mais equimentos, para lutar com o rei Demônio, ";
-std::cout << "se quiser ter uma chance, escolha com cuidado qual caminho irá seguir!" << "\n";
- 
-    while(opcao < 1 || opcao > 2){
-        std::cout << "Então, qual deseja escolher?" << "\n" << std::endl;
-        std::cout << "1 - Livraria\n2 - Zona do desejo\n" << std::endl;
- 
-        std::cin >> opcao;
-    }
- 
-    if(opcao == 1){
-        std::cout << "O vendedor te olha e pergunta: Qual sabedoria precisa para hoje?" << std::endl;
-        
-        std::cout << "1 - Nada\n2 - Como vencer em uma batalha\n3 - Ah, sei lá\n" << std::endl;
-        std::cin >> opcao;
- 
-        if(opcao == 2){
- 
-            opcao = 0;
- 
-            while(opcao < 1 || opcao > 2){
-                std::cout << "1 - Livro com estratégias de guerra (Dá muita energia)\n2 - Um lápis (Dá pouca energia)\n" << std::endl;
-                std::cin >> opcao;
-            }
- 
-            switch(opcao){
-                case 1:
-                    if(p.creditos >= 50){
-                        p.energia += 50;
-                        p.creditos -= 50;
-                    }else{
-                        std::cout << "Desculpe mas não posso dar-lhe o que deseja." << std::endl;
-                    }
-                    break;
-                case 2:
-                    if(p.creditos >= 10){
-                        p.energia += 10;
-                        p.creditos -= 10;
-                    }else{
-                        std::cout << "Desculpe mas não posso te vender isso no momento." << std::endl;
-                    }
-                    break;
-            }
-            return;
- 
-        }else if(opcao == 3){
-            std::cout << "Melhor se preparar pra morte!" << std::endl;
-            p.energia = p.energia - p.energia;
-            return;
-        }else{
-            std::cout << "Gente, se acalma aí....";
-        }
- 
-    }
- 
-    if(opcao == 2){
-        std::cout << "O vendedor te olha e pergunta: Pronto para guerrear e vencer com seu poder?" << std::endl;
-        
-        std::cout << "1 - Acho que não\n2 - Um dragão\n3 - Um ford de proteção\n" << std::endl;
-        std::cin >> opcao;
- 
-        if(opcao == 2){
- 
-            std::cout << "Agora sim, mostre a eles que você não será pego facilmente!" << std::endl;
- 
-            if(p.creditos >= 200){
-                std::cout << "Muitos morrerram para terem sua sabedoria!" << std::endl;
-                p.creditos = p.creditos - 200;
- 
-                mostraStatusDoJogador(p);
-            }else{
-                std::cout << "Arrasaaa! Dê um show de precisão e coragem!" << std::endl;
-            }
- 
-        }else if(opcao == 3){
-            std::cout << "É agora ninguém me mata" << std::endl;
- 
-            if(p.creditos >= 25){
-                std::cout << "Talvez..." << std::endl;
-                p.creditos = p.creditos - 25;
- 
-                mostraStatusDoJogador(p);
-            }else{
-                std::cout << "Você não merece estar aqui, saia!!!!" << std::endl;
-            }
-        }else{
-            std::cout << "Saía daqui agora!" << std::endl;
-        }
-    }
+void faseDoLivro(struct Personagem &p)
+{ //minha fase
+
+	unsigned int opcao = 0;
+
+	std::cout << "Você passou pela cidade, mas, ainda não concluiu; ";
+	std::cout << "Precisa coletar mais equimentos, para lutar com o rei Demônio, ";
+	std::cout << "se quiser ter uma chance, escolha com cuidado qual caminho irá seguir!" << "\n";
+
+	while (opcao < 1 || opcao > 2)
+	{
+		std::cout << "Então, qual deseja escolher?" << "\n" << std::endl;
+		std::cout << "1 - Livraria\n2 - Zona do desejo\n" << std::endl;
+
+		std::cin >> opcao;
+	}
+
+	if (opcao == 1)
+	{
+		std::cout << "O vendedor te olha e pergunta: Qual sabedoria precisa para hoje?" << std::endl;
+
+		std::cout << "1 - Nada\n2 - Como vencer em uma batalha\n3 - Ah, sei lá\n" << std::endl;
+		std::cin >> opcao;
+
+		if (opcao == 2)
+		{
+
+			opcao = 0;
+
+			while (opcao < 1 || opcao > 2)
+			{
+				std::cout << "1 - Livro com estratégias de guerra (Dá muita energia)\n2 - Um lápis (Dá pouca energia)\n" << std::endl;
+				std::cin >> opcao;
+			}
+
+			switch (opcao)
+			{
+				case 1:
+					if (p.creditos >= 50)
+					{
+						p.energia += 50;
+						p.creditos -= 50;
+					} else
+					{
+						std::cout << "Desculpe mas não posso dar-lhe o que deseja." << std::endl;
+					}
+					break;
+				case 2:
+					if (p.creditos >= 10)
+					{
+						p.energia += 10;
+						p.creditos -= 10;
+					} else
+					{
+						std::cout << "Desculpe mas não posso te vender isso no momento." << std::endl;
+					}
+					break;
+			}
+			return;
+
+		} else if (opcao == 3)
+		{
+			std::cout << "Melhor se preparar pra morte!" << std::endl;
+			p.energia = p.energia - p.energia;
+			return;
+		} else
+		{
+			std::cout << "Gente, se acalma aí....";
+		}
+
+	}
+
+	if (opcao == 2)
+	{
+		std::cout << "O vendedor te olha e pergunta: Pronto para guerrear e vencer com seu poder?" << std::endl;
+
+		std::cout << "1 - Acho que não\n2 - Um dragão\n3 - Um ford de proteção\n" << std::endl;
+		std::cin >> opcao;
+
+		if (opcao == 2)
+		{
+
+			std::cout << "Agora sim, mostre a eles que você não será pego facilmente!" << std::endl;
+
+			if (p.creditos >= 200)
+			{
+				std::cout << "Muitos morrerram para terem sua sabedoria!" << std::endl;
+				p.creditos = p.creditos - 200;
+
+				mostraStatusDoJogador(p);
+			} else
+			{
+				std::cout << "Arrasaaa! Dê um show de precisão e coragem!" << std::endl;
+			}
+
+		} else if (opcao == 3)
+		{
+			std::cout << "É agora ninguém me mata" << std::endl;
+
+			if (p.creditos >= 25)
+			{
+				std::cout << "Talvez..." << std::endl;
+				p.creditos = p.creditos - 25;
+
+				mostraStatusDoJogador(p);
+			} else
+			{
+				std::cout << "Você não merece estar aqui, saia!!!!" << std::endl;
+			}
+		} else
+		{
+			std::cout << "Saía daqui agora!" << std::endl;
+		}
+	}
+}
+
+void naomateobrendon(struct Personagem &p)
+{
+
+	unsigned int opcao = 0, opcao2 = 0;
+
+	std::cout << "Derrepente você é jogado em um parque, e ao seu lado sentado está um dos escravos do mal gosto e assassino de bom humor...BRENDON!!!" << std::endl;
+	std::cout << "???-Você deve atura-lo sem matar, caso não consiga concluir a tarefa você será recompensado como merece estamos entendidos?" << std::endl;
+
+	while (opcao < 1 || opcao > 2)
+	{
+		std::cout << "Você tem algumas opções como: 1-Mata-lo assim que avista-lo para previnir caso seja algum inimigo (recomendado)." << "\n" << "2-Pedir informação do local onde se encontra." << "\n" << std::endl;
+		std::cin >> opcao;
+	}
+
+	if (opcao == 1)
+	{
+
+		p.vidaDoBrendon = p.vidaDoBrendon - p.vidaDoBrendon;
+
+		std::cout << "???-Sua escolha matou Brendon (boa escolha!)." << std::endl;
+
+	}
+
+	if (opcao == 2)
+	{
+		std::cout << "Voce decide pedir informação.\n" << std::endl;
+		std::cout << "P-psss Hey, como vai cara?" << std::endl;
+		std::cout << "P-Perdão qual seu nome?\n" << std::endl;
+		std::cout << "B-Haha, que sigilo é esse? prazer eu sou Brendon como vai você?...EI VOCÊ QUER OUVIR UMA PIADA? HAHAH.\n" << std::endl;
+		std::cout << "P-Err...Ah...claro, porquê não?" << "\n" << std::endl;
+		std::cout << "B-O que a vaca disso pro boi? MUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU\n" << "Gostou? Minhas piadas são as melhores por aqui onde moro!" << "\n" << std::endl;
+
+		while (opcao2 < 1 || opcao2 > 2)
+		{
+
+			std::cout << "???-Eu sei depois dessa você quer matar ele né? Ta aí.\n" << "1-E você será feliz.\n" << std::endl;
+			std::cout << "2-Se quiser prosseguir. \n " << std::endl;
+			std::cin >> opcao2;
+		}
+
+		switch (opcao2)
+		{
+			case 1:
+				if (opcao2 == 1)
+				{
+					p.vidaDoBrendon = p.vidaDoBrendon - p.vidaDoBrendon;
+					std::cout << "Sua escolha matou Brendon (boa escolha!)." << std::endl;
+				}
+				break;
+
+			case 2:
+				if (opcao2 == 2)
+				{
+					std::cout << "???-Queria ter a sua paciência" << std::endl;
+					std::cout << "P-Ah é? quem mais mora aqui?questiona" << "\n" << std::endl;
+					std::cout << "B-Ah..Só eu mesmo rindo" << "\n" << "P-Ta explicado..." << std::endl;
+					break;
+				}
+		}
+	}
+
 }
 
 int main(int argc, char **argv)
