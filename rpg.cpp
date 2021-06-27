@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #include <list>
 #include <vector>
+//todo fazer a fase do urubu
+//calopsita
+//fase de modificacao
 
 /**
  * Um sistema de RPG em modo text que, dependendo das 
