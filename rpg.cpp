@@ -1000,7 +1000,7 @@ void faseDaCaverna(struct Personagem &p)
 std::vector<std::string> RemoverOpcao(char opcao, std::vector<std::string> direcao)
 {
 	std::vector<std::string> direcao2;
-	for (int i = 0; i < direcao.size(); i++)
+	for (unsigned int i = 0; i < direcao.size(); i++)
 	{
 		if (opcao != direcao[i][0])
 		{
@@ -1015,7 +1015,7 @@ char PerguntarDirecao(std::vector<std::string> direcao)
 
 	unsigned char opcao;
 	std::cout << "Você pode escolher essas direções\n";
-	for (int i = 0; i < direcao.size(); i++)
+	for (unsigned int i = 0; i < direcao.size(); i++)
 	{
 		std::cout << direcao[i][0] << " - " << direcao[i] + "\n";
 	}
@@ -1174,7 +1174,7 @@ bool escolherDirecao(bool direcaoCorreta, std::list<char> mapa)
 		} while (true);
 
 	}
-
+	return false;
 }
 
 //Iniciar
@@ -1382,7 +1382,7 @@ void faseFlorestaGelida(struct Personagem &p, struct InimigosGelidos &g)
 
 void faseGuilda(struct Personagem &p)
 {
-	unsigned int escolha = -1;
+	int escolha = -1;
 
 	while (escolha < 1 || escolha > 2)
 	{
@@ -2174,7 +2174,6 @@ void faseDaDungeon(struct Personagem &p)
 	//Escolha das missões
 	int resposta = 0;
 	int repetir;
-	unsigned int menu = 0;
 	unsigned int escolha = 0;
 
 	while (escolha < 1 || escolha > 2)
@@ -2400,9 +2399,9 @@ void faseDaMontanha(struct Personagem &p, struct Inimigo &i)
 		}
 
 		std::cout << "\n**Narrador-- O impacto lhe causou dano, voce possui: " << p.vida << " de vida atual\n" << std::endl;
-		std::cout << "Escuto uma voz fria como gelo me indagando--'Como me encontrou??'\n" << std::endl;
+		std::cout << "Escuto uma voz fria como gelo me indagando--'Como me encontrou?'\n" << std::endl;
 		std::cout << "\n------------------------------------------------------------------------------------------\n" << std::endl;
-		std::cout << "Oque devo responder?\n" << std::endl;
+		std::cout << "O que devo responder?\n" << std::endl;
 		std::cout << "1-**Heroi-- Não te interessa.\n" << std::endl;
 		std::cout << "2-**Heroi-- Vim em busca de um abrigo para achar voce apos a nevasca, mas agora que ja estou aqui, vim mata-lo atras do artefato mistico, que me protejerá do frio da floresta gélida.\n" << std::endl;
 		std::cout << "3-**Heroi-- Vim em busca de um abrigo para achar voce apos a nevasca," << std::endl;
@@ -2657,7 +2656,7 @@ void naomateobrendon(struct Personagem &p)
 	unsigned int opcao = 0, opcao2 = 0;
 
 	std::cout << "Derrepente você é jogado em um parque, e ao seu lado sentado está um dos escravos do mal gosto e assassino de bom humor...BRENDON!!!" << std::endl;
-	std::cout << "???-Você deve atura-lo sem matar, caso não consiga concluir a tarefa você será recompensado como merece estamos entendidos?" << std::endl;
+	std::cout << "Você deve atura-lo sem matar, caso não consiga concluir a tarefa você será recompensado como merece estamos entendidos?" << std::endl;
 
 	while (opcao < 1 || opcao > 2)
 	{
@@ -2670,7 +2669,7 @@ void naomateobrendon(struct Personagem &p)
 
 		p.vidaDoBrendon = p.vidaDoBrendon - p.vidaDoBrendon;
 
-		std::cout << "???-Sua escolha matou Brendon (boa escolha!)." << std::endl;
+		std::cout << "-Sua escolha matou Brendon (boa escolha!)." << std::endl;
 
 	}
 
@@ -2686,7 +2685,7 @@ void naomateobrendon(struct Personagem &p)
 		while (opcao2 < 1 || opcao2 > 2)
 		{
 
-			std::cout << "???-Eu sei depois dessa você quer matar ele né? Ta aí.\n" << "1-E você será feliz.\n" << std::endl;
+			std::cout << "-Eu sei depois dessa você quer matar ele né? Ta aí.\n" << "1-E você será feliz.\n" << std::endl;
 			std::cout << "2-Se quiser prosseguir. \n " << std::endl;
 			std::cin >> opcao2;
 		}
@@ -2704,7 +2703,7 @@ void naomateobrendon(struct Personagem &p)
 			case 2:
 				if (opcao2 == 2)
 				{
-					std::cout << "???-Queria ter a sua paciência" << std::endl;
+					std::cout << "-Queria ter a sua paciência" << std::endl;
 					std::cout << "P-Ah é? quem mais mora aqui?questiona" << "\n" << std::endl;
 					std::cout << "B-Ah..Só eu mesmo rindo" << "\n" << "P-Ta explicado..." << std::endl;
 					break;
@@ -2842,31 +2841,36 @@ int main(int argc, char **argv)
 
 	mostraStatusDoJogador(j);
 	std::cout << std::endl << "Labirinto" << std::endl;
-	//faseLabirinto(j);
+	faseLabirinto(j);
 
-	mostraStatusDoJogador(j);
-	std::cout << std::endl << "Caverna" << std::endl;
-	faseDaCaverna(j);
+	if (j.forcaMagica == 60)
+	{
+		mostraStatusDoJogador(j);
+		std::cout << std::endl << "Caverna" << std::endl;
+		faseDaCaverna(j);
 
-	mostraStatusDoJogador(j);
-	std::cout << std::endl << "Batalha" << std::endl;
-	faseBatalha(j);
+		mostraStatusDoJogador(j);
+		std::cout << std::endl << "Floresta" << std::endl;
+		faseDaFloresta(j);
 
-	mostraStatusDoJogador(j);
-	std::cout << std::endl << "Floresta" << std::endl;
-	faseDaFloresta(j);
+		mostraStatusDoJogador(j);
+		std::cout << std::endl << "Floresta II" << std::endl;
+		faseDaFloresta2(j);
+	} else
+	{
 
-	mostraStatusDoJogador(j);
-	std::cout << std::endl << "Floresta II" << std::endl;
-	faseDaFloresta2(j);
+		mostraStatusDoJogador(j);
+		std::cout << std::endl << "Batalha" << std::endl;
+		faseBatalha(j);
 
-	mostraStatusDoJogador(j);
-	std::cout << std::endl << "Gothan City" << std::endl;
-	faseGothamCity(j);
+		mostraStatusDoJogador(j);
+		std::cout << std::endl << "Gothan City" << std::endl;
+		faseGothamCity(j);
 
-	mostraStatusDoJogador(j);
-	std::cout << std::endl << "A velha" << std::endl;
-	faseDaVeinha(j);
+		mostraStatusDoJogador(j);
+		std::cout << std::endl << "A velha" << std::endl;
+		faseDaVeinha(j);
+	}
 
 	mostraStatusDoJogador(j);
 	std::cout << std::endl << "Floresta gélida" << std::endl;
