@@ -15,6 +15,18 @@ float geraAleatorio()
 	return rand() / (float) RAND_MAX;
 }
 
+struct inimigoFloresta faseDaFloresta()
+{
+	struct inimigoFloresta f;
+
+	f.energia = 200;
+	f.forcaFisica = 50;
+	f.forcaMagica = 50;
+	f.creditos = geraAleatorio() * 50;
+	return f;
+}
+;
+
 struct inimigoFloresta
 {
 		std::string nome;
@@ -2831,6 +2843,7 @@ int main(int argc, char **argv)
 
 	struct Personagem j = boasVindasDoJogo();
 	struct InimigosGelidos g = faseFlorestaGelida();
+	struct inimigoFloresta f = faseDaFloresta();
 
 	std::cout << "Você recebeu um presente das divindades da terra!\n";
 	std::cout << "Lembre-se que nem sempre grandes poderes significam grande honra!\n";
